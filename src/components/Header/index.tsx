@@ -1,4 +1,4 @@
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Flex, Text, Box } from "@chakra-ui/react";
 import { LoginAndSignUp } from "./LoginAndSignUp";
 import { SearchBar } from "./SearchBar";
 
@@ -6,6 +6,7 @@ export function Header() {
   return (
     <Box bg={"blue.500"} w='100%'>
       <Flex
+        direction={["column", "row"]}
         maxW={1700}
         mx='auto'
         py='1.3rem'
