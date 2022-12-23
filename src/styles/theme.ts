@@ -5,7 +5,6 @@ export const theme = extendTheme({
     global: {
       body: {
         background: "#edf5f0",
-        fontFamily: "Overpass, Helvetica",
       },
     },
   },
@@ -15,5 +14,9 @@ export const theme = extendTheme({
     "white.900": "#ffffff",
     "gray.700": "#d3d5f3",
     "gray.300": "#838186",
+  },
+  fonts: {
+    heading: "Overpass",
+    body: "Overpass",
   },
 });

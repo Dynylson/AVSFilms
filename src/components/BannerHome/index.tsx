@@ -11,8 +11,8 @@ export function BannerHome() {
       {isWideVersion && (
         <Flex
           bgImage='url("/assets/bannerHome.png")'
-          bgPosition='center'
-          height='650px'
+          bgPosition='start'
+          height='380px'
           maxW='100%'
         >
           <Flex direction='column' maxW={1700} mx='auto' w='100%' mt='3.9rem'>
