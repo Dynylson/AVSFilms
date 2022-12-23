@@ -5,7 +5,7 @@ import { AiOutlineSearch } from "react-icons/ai";
 export function SearchBar() {
   return (
     <>
-      <Button variant='unstyled'>
+      <Button variant='unstyled' my={[".8rem", null]}>
         <Flex alignItems='center' gap='10px' cursor='pointer'>
           <Flex
             alignItems='center'
