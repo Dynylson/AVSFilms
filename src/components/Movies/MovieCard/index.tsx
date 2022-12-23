@@ -14,7 +14,7 @@ export function MovieCard({ src, alt, title }: MovieCardProps) {
   return (
     <Flex direction='column' alignItems='start' cursor='grab'>
       <Image src={getPosterURL(src)} alt={alt} borderRadius='7px' />
-      <Heading color='gray.300' fontSize='1.5rem' mt='.8rem'>
+      <Heading color='gray.300' fontSize={[".9rem", "1.5rem"]} mt='.8rem'>
         {title}
       </Heading>
     </Flex>

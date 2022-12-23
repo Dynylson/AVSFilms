@@ -24,9 +24,14 @@ export function MoviesList() {
   }, []);
 
   return (
-    <Flex maxW={1700} mx='auto' overflow='hidden'>
+    <Flex maxW={1700} mx='auto' ml={[".7rem", "auto"]} overflow='hidden'>
       <Flex direction='column'>
-        <Heading color='gray.300' fontSize='2.25rem' mt='4rem' mb='2rem'>
+        <Heading
+          color='gray.300'
+          fontSize={["1.7rem", "2.25rem"]}
+          mt='4rem'
+          mb='2rem'
+        >
           Filmes em Alta
         </Heading>
         <Splide
