@@ -12,7 +12,7 @@ export function MovieCard({ src, alt, title }: MovieCardProps) {
   };
 
   return (
-    <Flex direction='column' alignItems='start' cursor='grab'>
+    <Flex direction='column' alignItems='start'>
       <Image src={getPosterURL(src)} alt={alt} borderRadius='7px' />
       <Heading color='gray.300' fontSize={[".9rem", "1.5rem"]} mt='.8rem'>
         {title}
