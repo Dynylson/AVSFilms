@@ -1,4 +1,10 @@
-import { Flex, Image, Heading, Text } from "@chakra-ui/react";
+import {
+  Flex,
+  Image,
+  Heading,
+  Text,
+  useBreakpointValue,
+} from "@chakra-ui/react";
 import { getPosterURL } from "../../Movies/MovieCard";
 
 interface SearchMoviesCardProps {
@@ -14,6 +20,11 @@ export function SearchMovieCard({
   release_date,
   overview,
 }: SearchMoviesCardProps) {
+  const isWideVersion = useBreakpointValue({
+    base: false,
+    lg: true,
+  });
+
   return (
     <Flex
       border='1px solid rgb(227, 227, 227)'
@@ -21,6 +32,7 @@ export function SearchMovieCard({
       gap='.7rem'
       mb='1.3rem'
       boxShadow='0 2px 8px rgb(0 0 0 / 10%)'
+      mx={[".7rem", "0"]}
     >
       <Image
         src={getPosterURL(src)}
@@ -34,7 +46,7 @@ export function SearchMovieCard({
           {title}
         </Heading>
         <Text>{release_date}</Text>
-        <Text mt='1rem'>{overview}</Text>
+        {isWideVersion && <Text mt='1rem'>{overview}</Text>}
       </Flex>
     </Flex>
   );
