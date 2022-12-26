@@ -2,27 +2,42 @@ import { useEffect, useState } from "react";
 
 import { Heading, Flex } from "@chakra-ui/react";
 
-import axios from "axios";
-
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 
 import { MovieCard } from "../MovieCard";
 
-export function MoviesList() {
-  const [movies, setMovies] = useState([]);
+interface MovieCharacteristics {
+  id: number;
+  title: string;
+  poster_path: string;
+}
 
-  useEffect(() => {
-    const fetchMovies = async () => {
-      const { data } = await axios.get(
-        "https://api.themoviedb.org/3/movie/popular?api_key=ee6c522f6ee1372ba637b097a93e6d60&language=pt-BR&page=1"
-      );
-      console.log(data.results);
-      setMovies(data.results);
-    };
-    fetchMovies();
-  }, []);
+interface Movie {
+  title: string;
+  backdrop_path: string;
+  media_type?: string;
+  release_date?: string;
+  first_air_date: string;
+  genre_ids: number[];
+  id: number;
+  name: string;
+  origin_country: string[];
+  original_language: string;
+  original_name: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  vote_average: number;
+  vote_count: number;
+}
 
+interface MovieProps {
+  fetch: Movie[];
+  category: string;
+}
+
+export function MoviesList({ fetch, category }: MovieProps) {
   return (
     <Flex maxW={1700} mx='auto' ml={[".7rem", "auto"]} overflow='hidden'>
       <Flex direction='column'>
@@ -32,7 +47,7 @@ export function MoviesList() {
           mt='4rem'
           mb='2rem'
         >
-          Filmes em Alta
+          {category}
         </Heading>
         <Splide
           options={{
@@ -44,7 +59,7 @@ export function MoviesList() {
             pagination: false,
           }}
         >
-          {movies?.map(({ id, title, poster_path }) => (
+          {fetch?.map(({ id, title, poster_path }: MovieCharacteristics) => (
             <SplideSlide key={id}>
               <MovieCard src={poster_path} title={title} alt={title} />
             </SplideSlide>

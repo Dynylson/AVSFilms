@@ -13,7 +13,9 @@ export function SearchBar() {
   function onSubmit() {
     if (!search) return;
 
-    router.push({ pathname: "/search", query: search });
+    router.push({ pathname: "/search", query: { movie: search } });
+
+    setSearch("");
   }
 
   return (

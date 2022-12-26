@@ -1,6 +1,9 @@
 import { Flex, Text, Box } from "@chakra-ui/react";
+
 import { LoginAndSignUp } from "./LoginAndSignUp";
 import { SearchBar } from "./SearchBar";
+
+import Link from "next/link";
 
 export function Header() {
   return (
@@ -13,19 +16,21 @@ export function Header() {
         justifyContent='space-between'
         alignItems='center'
       >
-        <Flex>
-          <Text color='white.900' fontSize='2.25rem' fontWeight='bold'>
-            AVS
-          </Text>
-          <Text
-            display='inline'
-            color='blue.900'
-            fontSize='2.25rem'
-            fontWeight='bold'
-          >
-            Films
-          </Text>
-        </Flex>
+        <Link href='/'>
+          <Flex>
+            <Text color='white.900' fontSize='2.25rem' fontWeight='bold'>
+              AVS
+            </Text>
+            <Text
+              display='inline'
+              color='blue.900'
+              fontSize='2.25rem'
+              fontWeight='bold'
+            >
+              Films
+            </Text>
+          </Flex>
+        </Link>
         <SearchBar />
         <LoginAndSignUp />
       </Flex>
