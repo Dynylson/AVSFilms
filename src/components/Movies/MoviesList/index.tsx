@@ -11,6 +11,7 @@ interface MovieCharacteristics {
   id: number;
   title: string;
   poster_path: string;
+  vote_average: number;
 }
 
 interface Movie {
@@ -59,11 +60,24 @@ export function MoviesList({ fetch, category }: MovieProps) {
             pagination: false,
           }}
         >
-          {fetch?.map(({ id, title, poster_path }: MovieCharacteristics) => (
-            <SplideSlide key={id}>
-              <MovieCard src={poster_path} title={title} alt={title} />
-            </SplideSlide>
-          ))}
+          {fetch?.map(
+            ({
+              id,
+              title,
+              poster_path,
+              vote_average,
+            }: MovieCharacteristics) => (
+              <SplideSlide key={id}>
+                <MovieCard
+                  src={poster_path}
+                  title={title}
+                  alt={title}
+                  id={id}
+                  vote_average={vote_average}
+                />
+              </SplideSlide>
+            )
+          )}
         </Splide>
       </Flex>
     </Flex>

@@ -22,7 +22,7 @@ export function MovieCard({
   };
 
   return (
-    <Link href={`/movies/${id}`}>
+    <Link href={`/movie/${id}`}>
       <Flex direction='column' alignItems='start'>
         <Box position='relative'>
           <Image
