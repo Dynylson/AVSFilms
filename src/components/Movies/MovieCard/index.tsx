@@ -37,6 +37,9 @@ export function MovieCard({
             left='4'
             alignItems='center'
             gap='.3rem'
+            bg='rgba(0, 0, 0, .5)'
+            borderRadius='5px'
+            p='.3rem'
           >
             <AiFillStar size={25} fill='#F3F808' />
             <Text color='blue.900' fontWeight='bold'>
