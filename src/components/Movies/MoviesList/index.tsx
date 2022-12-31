@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-
 import { Heading, Flex } from "@chakra-ui/react";
 
 import { Splide, SplideSlide } from "@splidejs/react-splide";

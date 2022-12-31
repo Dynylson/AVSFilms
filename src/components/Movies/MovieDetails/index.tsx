@@ -1,4 +1,5 @@
-import { Heading, Flex, Image, Box, Text } from "@chakra-ui/react";
+import { Heading, Flex, Image, Text, AspectRatio } from "@chakra-ui/react";
+import { TrailerProps } from "../../../../typings";
 
 interface genre {
   id: number;
@@ -19,6 +20,7 @@ interface MovieProps {
   genres: genre[];
   overview: string;
   production_companies: productionCompany[];
+  trailer: TrailerProps;
 }
 
 export function MovieDetails({
@@ -28,15 +30,25 @@ export function MovieDetails({
   genres,
   overview,
   production_companies,
+  trailer,
 }: MovieProps) {
   const getPosterURL = (posterpath: string) => {
     return `https://www.themoviedb.org/t/p/w220_and_h330_face${posterpath}`;
   };
-  console.log(production_companies);
+  console.log(trailer);
+
+  const findTrailer = trailer.results?.find((trailer) => {
+    return trailer.type == "Trailer";
+  });
+  console.log(findTrailer);
 
   return (
     <Flex maxW={1700} mx='auto' mt='3rem'>
-      <Flex direction={["column", "row"]} gap='2rem' alignItems='center'>
+      <Flex
+        direction={["column", "row"]}
+        gap='2rem'
+        alignItems={["center", "start"]}
+      >
         <Image
           src={getPosterURL(poster_path)}
           alt={alt}
@@ -83,7 +95,29 @@ export function MovieDetails({
               return;
             })}
           </Flex>
+          <AspectRatio>
+            <iframe
+              title={title}
+              src={`https://www.youtube.com/embed/${findTrailer?.key}`}
+              height='300px'
+              width='50%'
+            ></iframe>
+          </AspectRatio>
         </Flex>
+
+        {/* {trailer.results?.find((trailer) => {
+          return (
+            trailer.type == "Trailer" && (
+              // <AspectRatio>
+              //   <iframe
+              //     title={title}
+              //     src={`https://www.youtube.com/watch?v=${trailer.key}`}
+              //   ></iframe>
+              // </AspectRatio>
+              <Text>Trailer</Text>
+            )
+          );
+        })} */}
       </Flex>
     </Flex>
   );

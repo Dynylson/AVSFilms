@@ -1,8 +1,13 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { api } from "../api/api";
 import { MovieDetails } from "../../src/components/Movies/MovieDetails";
 import { Spinner } from "@chakra-ui/react";
+import { trailer } from "../../typings";
+
+interface TrailerProps {
+  id: number;
+  results: trailer[];
+}
 
 interface genre {
   id: number;
@@ -28,6 +33,7 @@ interface MovieProps {
 
 export default function Movie() {
   const [movie, setMovie] = useState({} as MovieProps);
+  const [trailer, setTrailer] = useState({} as TrailerProps);
   const [loading, setLoading] = useState(true);
 
   const { query } = useRouter();
@@ -35,11 +41,17 @@ export default function Movie() {
 
   useEffect(() => {
     const fetchMovieById = async () => {
-      const response = await fetch(
+      const responseMovie = await fetch(
         `https://api.themoviedb.org/3/movie/${id}?api_key=ee6c522f6ee1372ba637b097a93e6d60&language=pt-BR`
       );
-      const data = await response.json();
-      setMovie(data);
+      const responseTrailer = await fetch(
+        `https://api.themoviedb.org/3/movie/${id}/videos?api_key=ee6c522f6ee1372ba637b097a93e6d60&language=pt-BR`
+      );
+      const dataMovie = await responseMovie.json();
+      const dataTrailer = await responseTrailer.json();
+
+      setMovie(dataMovie);
+      setTrailer(dataTrailer);
       setLoading(false);
     };
     fetchMovieById();
@@ -55,6 +67,7 @@ export default function Movie() {
         genres={movie.genres}
         overview={movie.overview}
         production_companies={movie.production_companies}
+        trailer={trailer}
       />
     </>
   );
