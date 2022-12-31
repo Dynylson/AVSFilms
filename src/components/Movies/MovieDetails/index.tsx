@@ -18,7 +18,7 @@ interface MovieProps {
   title: string;
   genres: genre[];
   overview: string;
-  productionCompanies: productionCompany[];
+  production_companies: productionCompany[];
 }
 
 export function MovieDetails({
@@ -27,11 +27,12 @@ export function MovieDetails({
   title,
   genres,
   overview,
-  productionCompanies,
+  production_companies,
 }: MovieProps) {
   const getPosterURL = (posterpath: string) => {
     return `https://www.themoviedb.org/t/p/w220_and_h330_face${posterpath}`;
   };
+  console.log(production_companies);
 
   return (
     <Flex maxW={1700} mx='auto' mt='3rem'>
@@ -66,15 +67,20 @@ export function MovieDetails({
           <Heading mt='3rem' fontSize='1.5rem'>
             Produtoras
           </Heading>
-          <Flex>
-            {productionCompanies?.map((company) => {
-              return (
-                <Image
-                  key={company.id}
-                  src={getPosterURL(company.logo_path)}
-                  alt={company.name}
-                />
-              );
+          <Flex gap='30px'>
+            {production_companies?.map((company) => {
+              if (company.logo_path) {
+                return (
+                  <Image
+                    key={company.id}
+                    src={getPosterURL(company.logo_path)}
+                    alt={company.name}
+                    width='60px'
+                    height='60px'
+                  />
+                );
+              }
+              return;
             })}
           </Flex>
         </Flex>

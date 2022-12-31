@@ -23,7 +23,7 @@ interface MovieProps {
   alt: string;
   genres: genre[];
   overview: string;
-  productionCompanies: productionCompany[];
+  production_companies: productionCompany[];
 }
 
 export default function Movie() {
@@ -54,7 +54,7 @@ export default function Movie() {
         alt={movie.title}
         genres={movie.genres}
         overview={movie.overview}
-        productionCompanies={movie.productionCompanies}
+        production_companies={movie.production_companies}
       />
     </>
   );
