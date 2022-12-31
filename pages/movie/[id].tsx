@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { api } from "../api/api";
 import { MovieDetails } from "../../src/components/Movies/MovieDetails";
+import { Spinner } from "@chakra-ui/react";
 
 interface genre {
   id: number;
@@ -27,6 +28,7 @@ interface MovieProps {
 
 export default function Movie() {
   const [movie, setMovie] = useState({} as MovieProps);
+  const [loading, setLoading] = useState(true);
 
   const { query } = useRouter();
   const { id } = query;
@@ -38,19 +40,22 @@ export default function Movie() {
       );
       const data = await response.json();
       setMovie(data);
-      console.log(data);
+      setLoading(false);
     };
     fetchMovieById();
   }, []);
 
   return (
-    <MovieDetails
-      poster_path={movie.poster_path}
-      title={movie.title}
-      alt={movie.title}
-      genres={movie.genres}
-      overview={movie.overview}
-      productionCompanies={movie.productionCompanies}
-    />
+    <>
+      {loading && <Spinner />}
+      <MovieDetails
+        poster_path={movie.poster_path}
+        title={movie.title}
+        alt={movie.title}
+        genres={movie.genres}
+        overview={movie.overview}
+        productionCompanies={movie.productionCompanies}
+      />
+    </>
   );
 }

@@ -35,14 +35,15 @@ export function MovieDetails({
 
   return (
     <Flex maxW={1700} mx='auto' mt='3rem'>
-      <Flex gap='2rem'>
+      <Flex direction={["column", "row"]} gap='2rem' alignItems='center'>
         <Image
           src={getPosterURL(poster_path)}
           alt={alt}
           maxW='100%'
           borderRadius='6px'
+          height='300px'
         />
-        <Flex direction='column'>
+        <Flex direction='column' ml={[".7rem", "auto"]}>
           <Heading>{title}</Heading>
           <Flex gap='1rem'>
             {genres?.map((genre) => {
