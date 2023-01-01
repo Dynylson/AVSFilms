@@ -76,10 +76,22 @@ export function MovieDetails({
             Sinopse
           </Heading>
           <Text maxW='65ch'>{overview}</Text>
+
+          <Heading mt='3rem' fontSize='1.5rem'>
+            Trailer
+          </Heading>
+          <AspectRatio border='5px solid #838186' borderRadius='8px'>
+            <iframe
+              title={title}
+              src={`https://www.youtube.com/embed/${findTrailer?.key}`}
+              height='100px'
+              width='100%'
+            ></iframe>
+          </AspectRatio>
           <Heading mt='3rem' fontSize='1.5rem'>
             Produtoras
           </Heading>
-          <Flex gap='30px'>
+          <Flex gap='30px' mb='2rem'>
             {production_companies?.map((company) => {
               if (company.logo_path) {
                 return (
@@ -89,35 +101,16 @@ export function MovieDetails({
                     alt={company.name}
                     width='60px'
                     height='60px'
+                    border='1px solid #838186'
+                    borderRadius='8px'
+                    p='.3rem'
                   />
                 );
               }
               return;
             })}
           </Flex>
-          <AspectRatio>
-            <iframe
-              title={title}
-              src={`https://www.youtube.com/embed/${findTrailer?.key}`}
-              height='300px'
-              width='50%'
-            ></iframe>
-          </AspectRatio>
         </Flex>
-
-        {/* {trailer.results?.find((trailer) => {
-          return (
-            trailer.type == "Trailer" && (
-              // <AspectRatio>
-              //   <iframe
-              //     title={title}
-              //     src={`https://www.youtube.com/watch?v=${trailer.key}`}
-              //   ></iframe>
-              // </AspectRatio>
-              <Text>Trailer</Text>
-            )
-          );
-        })} */}
       </Flex>
     </Flex>
   );
