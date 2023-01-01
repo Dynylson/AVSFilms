@@ -1,9 +1,9 @@
-import { Flex, Text, Box } from "@chakra-ui/react";
+import { Flex, Text, Box, Button } from "@chakra-ui/react";
 
 import { LoginAndSignUp } from "./LoginAndSignUp";
 import { SearchBar } from "./SearchBar";
-
 import Link from "next/link";
+import { useState } from "react";
 
 export function Header() {
   return (

@@ -1,4 +1,5 @@
 import { Link, Flex } from "@chakra-ui/react";
+import { DarkTheme } from "./DarkTheme";
 
 export function LoginAndSignUp() {
   return (
@@ -20,6 +21,7 @@ export function LoginAndSignUp() {
       >
         Registrar-se
       </Link>
+      <DarkTheme />
     </Flex>
   );
 }

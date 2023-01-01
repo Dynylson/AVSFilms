@@ -1,5 +1,5 @@
 import { Heading, Flex, Image, Text, AspectRatio } from "@chakra-ui/react";
-import { TrailerProps } from "../../../../typings";
+import { TrailerProps } from "../../../../../typings";
 
 interface genre {
   id: number;
