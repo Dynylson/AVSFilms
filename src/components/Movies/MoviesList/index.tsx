@@ -4,6 +4,7 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 
 import { MovieCard } from "../MovieCard";
+import { MovieGenre } from "./MovieGenre";
 
 interface MovieCharacteristics {
   id: number;
@@ -40,6 +41,7 @@ export function MoviesList({ fetch, category }: MovieProps) {
   return (
     <Flex maxW={1700} mx='auto' ml={[".7rem", "auto"]} overflow='hidden'>
       <Flex direction='column'>
+        <MovieGenre />
         <Heading
           color='gray.300'
           fontSize={["1.7rem", "2.25rem"]}

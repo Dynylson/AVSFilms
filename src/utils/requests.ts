@@ -1,9 +1,12 @@
 const API_KEY = "ee6c522f6ee1372ba637b097a93e6d60";
+const BASE_URL = "https://api.themoviedb.org/3/movie";
+const LANGUAGE = "language=pt-BR";
 
 export const requests = {
-  popular: `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=pt-BR`,
-  topRated: `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}&language=pt-BR`,
-  upcoming: `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=pt-BR`,
+  popular: `${BASE_URL}/popular?api_key=${API_KEY}&${LANGUAGE}`,
+  topRated: `${BASE_URL}/top_rated?api_key=${API_KEY}&${LANGUAGE}`,
+  upcoming: `${BASE_URL}/upcoming?api_key=${API_KEY}&${LANGUAGE}`,
   nowPlaying: `
-  https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}&language=pt-BR&page=1`,
+  ${BASE_URL}/now_playing?api_key=${API_KEY}&${LANGUAGE}&page=1`,
+  genres: `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&${LANGUAGE}`,
 };
