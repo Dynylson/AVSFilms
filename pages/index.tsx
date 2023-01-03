@@ -1,5 +1,6 @@
 import { BannerHome } from "../src/components/BannerHome";
 import { MoviesList } from "../src/components/Movies/MoviesList";
+import { MovieGenre } from "../src/components/Movies/MoviesList/MovieGenre";
 
 import { requests } from "../src/utils/requests";
 
@@ -32,6 +33,7 @@ export default function Home({ topRated, popular, upcoming }: HomeProps) {
   return (
     <>
       <BannerHome />
+      <MovieGenre />
       <MoviesList fetch={popular} category='Em Alta' />
       <MoviesList fetch={topRated} category='Renomados' />
       <MoviesList fetch={upcoming} category='Em Breve' />

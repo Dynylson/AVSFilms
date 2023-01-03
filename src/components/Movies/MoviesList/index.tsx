@@ -41,7 +41,6 @@ export function MoviesList({ fetch, category }: MovieProps) {
   return (
     <Flex maxW={1700} mx='auto' ml={[".7rem", "auto"]} overflow='hidden'>
       <Flex direction='column'>
-        <MovieGenre />
         <Heading
           color='gray.300'
           fontSize={["1.7rem", "2.25rem"]}
