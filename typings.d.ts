@@ -16,6 +16,10 @@ export interface TrailerProps {
   results: trailer[];
 }
 
+interface genres {
+  genres: genre[];
+}
+
 interface genre {
   id: number;
   name: string;
