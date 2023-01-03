@@ -1,13 +1,10 @@
 import { useEffect, useState } from "react";
+import { genre } from "../../../../../typings";
 import { requests } from "../../../../utils/requests";
-
-interface genres {
-  id: number;
-  name: string;
-}
+import { SelectGenres } from "./Select";
 
 export function MovieGenre() {
-  const [genres, setGenres] = useState<genres[]>([]);
+  const [genres, setGenres] = useState<genre[]>([]);
 
   useEffect(() => {
     const fetchGenres = async () => {
@@ -19,5 +16,5 @@ export function MovieGenre() {
   }, []);
   console.log(genres);
 
-  return <h1>Hello World!</h1>;
+  return <SelectGenres genres={genres.genres} />;
 }
