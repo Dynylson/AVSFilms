@@ -14,7 +14,6 @@ export function MovieGenre() {
     };
     fetchGenres();
   }, []);
-  console.log(genres);
 
   return <SelectGenres genres={genres} />;
 }

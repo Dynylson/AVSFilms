@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { MovieDetails } from "../../src/components/Movies/MoviesList/MovieDetails";
 import { Spinner } from "@chakra-ui/react";
-import { trailer } from "../../typings";
+import { IActor, IMovie, trailer } from "../../typings";
 
 interface TrailerProps {
   id: number;
@@ -34,6 +34,9 @@ interface MovieProps {
 export default function Movie() {
   const [movie, setMovie] = useState({} as MovieProps);
   const [trailer, setTrailer] = useState({} as TrailerProps);
+  const [actors, setActors] = useState<IActor[]>([]);
+  const [similar, setSimilar] = useState<IMovie[]>([]);
+
   const [loading, setLoading] = useState(true);
 
   const { query } = useRouter();
@@ -47,11 +50,22 @@ export default function Movie() {
       const responseTrailer = await fetch(
         `https://api.themoviedb.org/3/movie/${id}/videos?api_key=ee6c522f6ee1372ba637b097a93e6d60&language=pt-BR`
       );
+      const responseActors = await fetch(
+        `https://api.themoviedb.org/3/movie/${id}/credits?api_key=ee6c522f6ee1372ba637b097a93e6d60`
+      );
+      const responseSimilar = await fetch(
+        `https://api.themoviedb.org/3/movie/${id}/similar?api_key=ee6c522f6ee1372ba637b097a93e6d60&language=en-US&page=1`
+      );
       const dataMovie = await responseMovie.json();
       const dataTrailer = await responseTrailer.json();
+      const dataActors = await responseActors.json();
+      const dataSimilar = await responseSimilar.json();
 
       setMovie(dataMovie);
       setTrailer(dataTrailer);
+      setActors(dataActors.cast);
+      setSimilar(dataSimilar.results);
+
       setLoading(false);
     };
     fetchMovieById();
@@ -68,6 +82,8 @@ export default function Movie() {
         overview={movie.overview}
         production_companies={movie.production_companies}
         trailer={trailer}
+        actors={actors}
+        similar={similar}
       />
     </>
   );
