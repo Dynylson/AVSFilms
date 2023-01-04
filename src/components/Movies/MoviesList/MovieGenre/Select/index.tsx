@@ -6,7 +6,6 @@ interface SelectGenresProps {
 }
 
 export function SelectGenres({ genres }: SelectGenresProps) {
-  console.log(genres);
   return (
     <Select
       placeholder='Selecione um gênero'
@@ -14,7 +13,7 @@ export function SelectGenres({ genres }: SelectGenresProps) {
       alignSelf='start'
       mt='1rem'
       w='300px'
-      ml='6.3rem'
+      ml={[".7rem", "6.3rem"]}
     >
       {genres?.map(({ name, id }) => (
         <option key={id} value={name}>
