@@ -1,8 +1,8 @@
 import { Divider, Flex, Text } from "@chakra-ui/react";
-import { SimilarProps } from "../../../../../../pages/movie/[id]";
+import { IMovie } from "../../../../../../typings";
 
 interface MovieSimilarProps {
-  similar: SimilarProps[];
+  similar: IMovie[];
 }
 
 export function MovieSimilar({ similar }: MovieSimilarProps) {
