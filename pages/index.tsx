@@ -3,12 +3,12 @@ import { MoviesList } from "../src/components/Movies/MoviesList";
 import { MovieGenre } from "../src/components/Movies/MoviesList/MovieGenre";
 
 import { requests } from "../src/utils/requests";
-import { Movie } from "../typings";
+import { IMovie } from "../typings";
 
 interface HomeProps {
-  topRated: Movie[];
-  popular: Movie[];
-  upcoming: Movie[];
+  topRated: IMovie[];
+  popular: IMovie[];
+  upcoming: IMovie[];
 }
 
 export default function Home({ topRated, popular, upcoming }: HomeProps) {
