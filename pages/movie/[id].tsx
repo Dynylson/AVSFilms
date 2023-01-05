@@ -69,7 +69,7 @@ export default function Movie() {
       setLoading(false);
     };
     fetchMovieById();
-  }, []);
+  }, [id]);
 
   return (
     <>
