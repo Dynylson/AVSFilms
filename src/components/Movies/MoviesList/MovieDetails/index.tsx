@@ -123,7 +123,7 @@ export function MovieDetails({
             </Flex>
           </Flex>
         </Flex>
-        {/* <MovieSimilar similar={similar} /> */}
+        <MovieSimilar similar={similar} />
       </Flex>
     </>
   );

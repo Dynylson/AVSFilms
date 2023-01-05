@@ -4,7 +4,6 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 
 import { MovieCard } from "../MovieCard";
-import { MovieGenre } from "./MovieGenre";
 
 interface MovieCharacteristics {
   id: number;

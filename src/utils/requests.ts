@@ -10,3 +10,7 @@ export const requests = {
   ${BASE_URL}/now_playing?api_key=${API_KEY}&${LANGUAGE}&page=1`,
   genres: `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&${LANGUAGE}`,
 };
+
+export const getMovieImage = (posterpath: string) => {
+  return `https://www.themoviedb.org/t/p/w220_and_h330_face${posterpath}`;
+};
