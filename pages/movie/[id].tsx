@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { MovieDetails } from "../../src/components/Movies/MoviesList/MovieDetails";
-import { Spinner } from "@chakra-ui/react";
+import { Spinner, Flex } from "@chakra-ui/react";
 import { IActor, IMovie, trailer } from "../../typings";
 
 interface TrailerProps {
@@ -73,18 +73,25 @@ export default function Movie() {
 
   return (
     <>
-      {loading && <Spinner />}
-      <MovieDetails
-        poster_path={movie.poster_path}
-        title={movie.title}
-        alt={movie.title}
-        genres={movie.genres}
-        overview={movie.overview}
-        production_companies={movie.production_companies}
-        trailer={trailer}
-        actors={actors}
-        similar={similar}
-      />
+      {loading ? (
+        <Flex w='100vw' h='80vh' alignItems='center' justifyContent='center'>
+          <Spinner size='lg' />
+        </Flex>
+      ) : (
+        <>
+          <MovieDetails
+            poster_path={movie.poster_path}
+            title={movie.title}
+            alt={movie.title}
+            genres={movie.genres}
+            overview={movie.overview}
+            production_companies={movie.production_companies}
+            trailer={trailer}
+            actors={actors}
+            similar={similar}
+          />
+        </>
+      )}
     </>
   );
 }

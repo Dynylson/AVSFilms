@@ -1,11 +1,4 @@
-import {
-  Heading,
-  Flex,
-  Image,
-  Text,
-  AspectRatio,
-  Divider,
-} from "@chakra-ui/react";
+import { Heading, Flex, Image, Text, AspectRatio } from "@chakra-ui/react";
 import { TrailerProps, IActor, IMovie } from "../../../../../typings";
 import { MovieSimilar } from "./MovieSimilar";
 

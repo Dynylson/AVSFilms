@@ -47,9 +47,11 @@ export function MovieCard({
             </Text>
           </Flex>
         </Box>
-        <Heading color='gray.300' fontSize={[".9rem", "1.5rem"]} mt='.8rem'>
-          {title}
-        </Heading>
+        <Flex>
+          <Heading color='gray.300' fontSize={[".9rem", "1.5rem"]} mt='.8rem'>
+            {title}
+          </Heading>
+        </Flex>
       </Flex>
     </Link>
   );
