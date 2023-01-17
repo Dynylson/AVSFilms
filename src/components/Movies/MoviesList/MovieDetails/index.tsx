@@ -44,6 +44,7 @@ export function MovieDetails({
   const findTrailer = trailer.results?.find((trailer) => {
     return trailer.type == "Trailer";
   });
+  console.log(actors);
 
   return (
     <>
@@ -113,6 +114,11 @@ export function MovieDetails({
                 }
                 return;
               })}
+            </Flex>
+            <Flex>
+              {/* {actors?.map((actor) => {
+                console.log(actor);
+              })} */}
             </Flex>
           </Flex>
         </Flex>

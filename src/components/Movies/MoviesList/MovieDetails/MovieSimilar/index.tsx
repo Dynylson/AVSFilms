@@ -24,7 +24,7 @@ export function MovieSimilar({ similar }: MovieSimilarProps) {
             <Heading fontSize='2rem'>Filmes Similares</Heading>
             <Flex direction='column'>
               <Splide options={{ width: 600, perPage: 3, gap: "1rem" }}>
-                {similar.map(({ id, poster_path, name }) => {
+                {similar?.map(({ id, poster_path, name }) => {
                   return (
                     <SplideSlide key={id}>
                       <Link href={`/movie/${id}`}>
