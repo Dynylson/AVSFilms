@@ -1,4 +1,6 @@
 import { Text, Flex, Button } from "@chakra-ui/react";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -50,14 +52,18 @@ export function SearchMovies() {
       <Flex direction='column'>
         {movies?.map(({ id, title, poster_path, release_date, overview }) => {
           return (
-            <SearchMovieCard
-              key={id}
-              id={id}
-              src={poster_path}
-              title={title}
-              release_date={release_date}
-              overview={overview}
-            />
+            <>
+              {(
+                <SearchMovieCard
+                  key={id}
+                  id={id}
+                  src={poster_path}
+                  title={title}
+                  release_date={release_date}
+                  overview={overview}
+                />
+              ) || <Skeleton count={5} />}
+            </>
           );
         })}
       </Flex>
