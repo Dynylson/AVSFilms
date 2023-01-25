@@ -1,4 +1,4 @@
-import { Text, Flex } from "@chakra-ui/react";
+import { Text, Flex, Button } from "@chakra-ui/react";
 
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -7,20 +7,28 @@ import axios from "axios";
 
 export function SearchMovies() {
   const [movies, setMovies] = useState([]);
+  const [page, setPage] = useState(1);
 
   const { query } = useRouter();
   const q = query.movie;
 
+  const url = `https://api.themoviedb.org/3/search/movie?api_key=ee6c522f6ee1372ba637b097a93e6d60&query=${q}&language=pt-BR&page=${page}`;
+
   useEffect(() => {
     const fetchMoviesByQuery = async () => {
-      const response = await axios.get(
-        `https://api.themoviedb.org/3/search/movie?api_key=ee6c522f6ee1372ba637b097a93e6d60&query=${q}&language=pt-BR`
-      );
+      const response = await axios.get(url);
       console.log(response);
       setMovies(response.data.results);
     };
     fetchMoviesByQuery();
-  }, [q]);
+  }, [q, url]);
+
+  useEffect(() => {}, [page]);
+
+  function handleLoadMoreMovies() {
+    setPage((state) => state + 1);
+  }
+  console.log(page);
 
   return (
     <Flex direction='column' maxW={1700} mx='auto' mt='2rem'>
@@ -53,6 +61,13 @@ export function SearchMovies() {
           );
         })}
       </Flex>
+      {movies.length === 0 ? (
+        <p>nao tem mais filmes</p>
+      ) : (
+        <Button alignSelf='start' mb='1rem' onClick={handleLoadMoreMovies}>
+          Próxima página
+        </Button>
+      )}
     </Flex>
   );
 }
