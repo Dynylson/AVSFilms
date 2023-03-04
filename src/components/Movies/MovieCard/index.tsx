@@ -1,7 +1,8 @@
 import { Flex, Image, Heading, Box, Text } from "@chakra-ui/react";
 import Link from "next/link";
-import { AiFillStar } from "react-icons/ai";
-import { AddMovie } from "./AddMovie";
+import { useEffect, useState } from "react";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 interface MovieCardProps {
   id: number;
@@ -22,34 +23,41 @@ export function MovieCard({
     return `https://www.themoviedb.org/t/p/w220_and_h330_face${posterpath}`;
   };
 
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+  }, []);
+
   return (
-    <Link href={`/movie/${id}`}>
-      <Flex direction='column' alignItems='start'>
-        <Box position='relative'>
-          <Image
-            src={getPosterURL(src)}
-            alt={alt}
-            borderRadius='7px'
-            width='300px'
-          />
-          <Flex
-            w='100%'
-            position='absolute'
-            bottom='5'
-            left='4'
-            alignItems='center'
-            justifyContent='space-between'
-            gap='.3rem'
-            borderRadius='5px'
-            p='.3rem'
-          ></Flex>
-        </Box>
-        <Flex>
-          <Heading color='gray.300' fontSize={[".9rem", "1.5rem"]} mt='.8rem'>
-            {title}
-          </Heading>
-        </Flex>
-      </Flex>
-    </Link>
+    <>
+      {isLoading ? (
+        <Skeleton height={250} width={150} duration={2} />
+      ) : (
+        <Link href={`/movie/${id}`}>
+          <Flex className='movie-card' direction='column' alignItems='start'>
+            <Box position='relative'>
+              <Image
+                src={getPosterURL(src)}
+                alt={alt}
+                borderRadius='7px'
+                width='300px'
+              />
+            </Box>
+            <Flex>
+              <Heading
+                color='gray.300'
+                fontSize={[".9rem", "1.5rem"]}
+                mt='.8rem'
+              >
+                {title}
+              </Heading>
+            </Flex>
+          </Flex>
+        </Link>
+      )}
+    </>
   );
 }
