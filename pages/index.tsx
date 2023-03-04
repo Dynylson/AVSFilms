@@ -1,3 +1,4 @@
+import { Box } from "@chakra-ui/react";
 import { BannerHome } from "../src/components/BannerHome";
 import { MoviesList } from "../src/components/Movies/MoviesList";
 import { MovieGenre } from "../src/components/Movies/MoviesList/MovieGenre";
@@ -9,18 +10,24 @@ interface HomeProps {
   topRated: IMovie[];
   popular: IMovie[];
   upcoming: IMovie[];
+  nowPlaying: IMovie[];
 }
 
-export default function Home({ topRated, popular, upcoming }: HomeProps) {
+export default function Home({
+  topRated,
+  popular,
+  upcoming,
+  nowPlaying,
+}: HomeProps) {
   return (
-    <>
-      <BannerHome />
+    <Box mx='1.5rem'>
+      {/* <BannerHome /> */}
       <MovieGenre />
       <MoviesList fetch={popular} category='Em Alta' />
       <MoviesList fetch={topRated} category='Renomados' />
       <MoviesList fetch={upcoming} category='Em Breve' />
-      <MoviesList fetch={upcoming} category='Reproduzindo Agora' />
-    </>
+      <MoviesList fetch={nowPlaying} category='Reproduzindo Agora' />
+    </Box>
   );
 }
 
