@@ -6,9 +6,19 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { SearchMovieCard } from "./SearchMovieCard";
 import axios from "axios";
+import { useScrollToTop } from "../../hooks/useScrollToTop";
+
+interface MoviesProps {
+  id: number;
+  src: string;
+  title: string;
+  release_date: string;
+  overview: string;
+  poster_path: string;
+}
 
 export function SearchMovies() {
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState<MoviesProps[]>([]);
   const [page, setPage] = useState(1);
 
   const { query } = useRouter();
@@ -24,11 +34,15 @@ export function SearchMovies() {
     };
     fetchMoviesByQuery();
   }, [q, url]);
+  console.log(movies);
 
-  useEffect(() => {}, [page]);
+  useEffect(() => {
+    setPage(1);
+  }, [query]);
 
   function handleLoadMoreMovies() {
     setPage((state) => state + 1);
+    window.scrollTo(0, 0);
   }
   console.log(page);
 

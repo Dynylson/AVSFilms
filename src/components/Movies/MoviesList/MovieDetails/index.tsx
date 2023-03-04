@@ -1,4 +1,7 @@
 import { Heading, Flex, Image, Text, AspectRatio } from "@chakra-ui/react";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
+
 import { TrailerProps, IActor, IMovie } from "../../../../../typings";
 import { MovieSimilar } from "./MovieSimilar";
 
@@ -54,13 +57,15 @@ export function MovieDetails({
           gap='2rem'
           alignItems={["center", "start"]}
         >
-          <Image
-            src={getPosterURL(poster_path)}
-            alt={alt}
-            maxW='100%'
-            borderRadius='6px'
-            height='300px'
-          />
+          {(
+            <Image
+              src={getPosterURL(poster_path)}
+              alt={alt}
+              maxW='100%'
+              borderRadius='6px'
+              height='300px'
+            />
+          ) || <Skeleton />}
           <Flex direction='column' ml={[".7rem", "auto"]}>
             <Heading>{title}</Heading>
             <Flex gap='1rem'>

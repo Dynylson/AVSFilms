@@ -1,13 +1,13 @@
 import { Select } from "@chakra-ui/react";
 import { useState } from "react";
-import { genre } from "../../../../../../typings";
+import { useGenres } from "../../../../../hooks/useGenres";
 
-interface SelectGenresProps {
-  genres: genre[];
-}
+export function SelectGenres() {
+  const { genres, movieGenre, moviesCategoryByGenre } = useGenres();
 
-export function SelectGenres({ genres }: SelectGenresProps) {
-  const [select, setSelect] = useState("");
+  const [select, setSelect] = useState(genres[0]);
+
+  // console.log(genres[0]);
   console.log(select);
 
   return (
@@ -19,10 +19,10 @@ export function SelectGenres({ genres }: SelectGenresProps) {
       w='300px'
       ml={[".7rem", "6.3rem"]}
       value={select}
-      onChange={({ target }) => setSelect(target.value)}
+      onChange={({ target }) => console.log(target.value)}
     >
       {genres?.map(({ name, id }) => (
-        <option key={id} value={name}>
+        <option key={id} value={id}>
           {name}
         </option>
       ))}

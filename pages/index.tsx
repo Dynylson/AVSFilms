@@ -26,7 +26,9 @@ export default function Home({ topRated, popular, upcoming }: HomeProps) {
 
 export const getServerSideProps = async () => {
   const [popular, topRated, upcoming, nowPlaying] = await Promise.all([
-    fetch(requests.popular).then((response) => response.json()),
+    fetch(`${requests.popular}&with_genres=27`).then((response) =>
+      response.json()
+    ),
     fetch(requests.topRated).then((response) => response.json()),
     fetch(requests.upcoming).then((response) => response.json()),
     fetch(requests.nowPlaying).then((response) => response.json()),

@@ -5,8 +5,10 @@ import { requests } from "../utils/requests";
 
 interface FilmsContextType {
   colorMode: string;
-  switchTheme: () => void;
   genres: genre[];
+  movieGenre: number;
+  switchTheme: () => void;
+  moviesCategoryByGenre: (id: number) => void;
 }
 
 export const FilmsContext = createContext({} as FilmsContextType);
@@ -18,6 +20,7 @@ interface FilmsContextProviderProps {
 export function FilmsContextProvider({ children }: FilmsContextProviderProps) {
   const { colorMode, toggleColorMode } = useColorMode();
   const [genres, setGenres] = useState<genre[]>([]);
+  const [movieGenre, setMovieGenre] = useState(28);
 
   function switchTheme() {
     toggleColorMode();
@@ -32,8 +35,20 @@ export function FilmsContextProvider({ children }: FilmsContextProviderProps) {
     fetchGenres();
   }, []);
 
+  function moviesCategoryByGenre(id: number) {
+    setMovieGenre(id);
+  }
+
   return (
-    <FilmsContext.Provider value={{ colorMode, switchTheme, genres }}>
+    <FilmsContext.Provider
+      value={{
+        colorMode,
+        switchTheme,
+        genres,
+        movieGenre,
+        moviesCategoryByGenre,
+      }}
+    >
       {children}
     </FilmsContext.Provider>
   );

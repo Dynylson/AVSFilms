@@ -1,6 +1,7 @@
 import { Flex, Image, Heading, Box, Text } from "@chakra-ui/react";
 import Link from "next/link";
 import { AiFillStar } from "react-icons/ai";
+import { AddMovie } from "./AddMovie";
 
 interface MovieCardProps {
   id: number;
@@ -32,19 +33,22 @@ export function MovieCard({
             width='300px'
           />
           <Flex
+            w='100%'
             position='absolute'
             bottom='5'
             left='4'
             alignItems='center'
+            justifyContent='space-between'
             gap='.3rem'
-            bg='rgba(0, 0, 0, .5)'
             borderRadius='5px'
             p='.3rem'
           >
-            <AiFillStar size={25} fill='#F3F808' />
-            <Text color='blue.900' fontWeight='bold'>
-              {vote_average}
-            </Text>
+            <Flex>
+              <AiFillStar size={25} fill='#F3F808' />
+              <Text color='blue.900' fontWeight='bold'>
+                {vote_average}
+              </Text>
+            </Flex>
           </Flex>
         </Box>
         <Flex>

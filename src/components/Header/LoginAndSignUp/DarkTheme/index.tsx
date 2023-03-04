@@ -1,24 +1,21 @@
 import { BsFillMoonFill } from "react-icons/bs";
 import { RiSunLine } from "react-icons/ri";
-import { useState } from "react";
 import { Box } from "@chakra-ui/react";
+import { useSwitchTheme } from "../../../../hooks/useSwitchTheme";
 
 export function DarkTheme() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const { colorMode, switchTheme } = useSwitchTheme();
 
   return (
     <>
-      {isDarkMode ? (
+      {colorMode === "dark" ? (
         <Box
           cursor='pointer'
           border='1px solid #838186'
           borderRadius='8px'
           padding='.5rem'
         >
-          <BsFillMoonFill
-            onClick={() => setIsDarkMode(!isDarkMode)}
-            fill='#838186'
-          />
+          <BsFillMoonFill onClick={() => switchTheme()} fill='#838186' />
         </Box>
       ) : (
         <Box
@@ -27,10 +24,7 @@ export function DarkTheme() {
           borderRadius='8px'
           padding='.5rem'
         >
-          <RiSunLine
-            onClick={() => setIsDarkMode(!isDarkMode)}
-            fill='#F3F808'
-          />
+          <RiSunLine onClick={() => switchTheme()} fill='#F3F808' />
         </Box>
       )}
     </>
