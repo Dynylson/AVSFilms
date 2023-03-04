@@ -34,7 +34,9 @@ export function MovieCard({
   return (
     <>
       {isLoading ? (
-        <Skeleton height={250} width={150} duration={2} />
+        <Box height={[200]} width={[10, 50]}>
+          <Skeleton height={250} width={150} duration={2} />
+        </Box>
       ) : (
         <Link href={`/movie/${id}`}>
           <Flex className='movie-card' direction='column' alignItems='start'>
