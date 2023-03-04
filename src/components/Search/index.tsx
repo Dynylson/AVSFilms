@@ -6,7 +6,6 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { SearchMovieCard } from "./SearchMovieCard";
 import axios from "axios";
-import { useScrollToTop } from "../../hooks/useScrollToTop";
 
 interface MoviesProps {
   id: number;
@@ -82,7 +81,9 @@ export function SearchMovies() {
         })}
       </Flex>
       {movies.length === 0 ? (
-        <p>nao tem mais filmes</p>
+        <Text fontSize='1.5rem' mb='1.3rem' ml={[".7rem", "0"]}>
+          Não há mais filmes 😢
+        </Text>
       ) : (
         <Button alignSelf='start' mb='1rem' onClick={handleLoadMoreMovies}>
           Próxima página
