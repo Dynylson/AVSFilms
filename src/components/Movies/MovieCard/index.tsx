@@ -42,14 +42,7 @@ export function MovieCard({
             gap='.3rem'
             borderRadius='5px'
             p='.3rem'
-          >
-            <Flex>
-              <AiFillStar size={25} fill='#F3F808' />
-              <Text color='blue.900' fontWeight='bold'>
-                {vote_average}
-              </Text>
-            </Flex>
-          </Flex>
+          ></Flex>
         </Box>
         <Flex>
           <Heading color='gray.300' fontSize={[".9rem", "1.5rem"]} mt='.8rem'>

@@ -29,6 +29,7 @@ interface MovieProps {
   genres: genre[];
   overview: string;
   production_companies: productionCompany[];
+  vote_average: number;
 }
 
 export default function Movie() {
@@ -71,6 +72,8 @@ export default function Movie() {
     fetchMovieById();
   }, [id]);
 
+  console.log(movie);
+
   return (
     <>
       {loading ? (
@@ -83,6 +86,7 @@ export default function Movie() {
             poster_path={movie.poster_path}
             title={movie.title}
             alt={movie.title}
+            vote_average={movie.vote_average}
             genres={movie.genres}
             overview={movie.overview}
             production_companies={movie.production_companies}

@@ -1,4 +1,5 @@
 import { Heading, Flex, Image, Text, AspectRatio } from "@chakra-ui/react";
+import { AiFillStar } from "react-icons/ai";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
@@ -21,6 +22,7 @@ interface MovieProps {
   poster_path: string;
   alt: string;
   title: string;
+  vote_average: number;
   genres: genre[];
   overview: string;
   production_companies: productionCompany[];
@@ -39,6 +41,7 @@ export function MovieDetails({
   trailer,
   actors,
   similar,
+  vote_average,
 }: MovieProps) {
   const getPosterURL = (posterpath: string) => {
     return `https://www.themoviedb.org/t/p/w220_and_h330_face${posterpath}`;
@@ -67,7 +70,13 @@ export function MovieDetails({
             />
           ) || <Skeleton />}
           <Flex direction='column' ml={[".7rem", "auto"]}>
-            <Heading>{title}</Heading>
+            <Flex alignItems='center' gap='.5rem'>
+              <Heading>{title}</Heading>
+              <AiFillStar size={25} fill='#F3F808' />
+              <Text color='blue.900' fontWeight='bold'>
+                {vote_average?.toFixed(2)}
+              </Text>
+            </Flex>
             <Flex gap='1rem'>
               {genres?.map((genre) => {
                 return (
@@ -82,6 +91,7 @@ export function MovieDetails({
                 );
               })}
             </Flex>
+
             <Heading mt='3rem' fontSize='1.5rem'>
               Sinopse
             </Heading>
