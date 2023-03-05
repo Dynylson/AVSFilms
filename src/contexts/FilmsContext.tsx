@@ -1,4 +1,4 @@
-import { useColorMode, useColorModeValue } from "@chakra-ui/react";
+import { useColorMode } from "@chakra-ui/react";
 import { createContext, ReactNode, useEffect, useState } from "react";
 import { genre } from "../../typings";
 import { requests } from "../utils/requests";

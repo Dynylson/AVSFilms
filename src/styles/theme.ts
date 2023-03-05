@@ -4,9 +4,7 @@ import { useSwitchTheme } from "../hooks/useSwitchTheme";
 export const theme = extendTheme({
   styles: {
     global: {
-      body: {
-        background: "#edf5f0",
-      },
+      body: {},
     },
   },
   colors: {
@@ -21,7 +19,8 @@ export const theme = extendTheme({
     body: "Overpass",
   },
   config: {
-    initialColorMode: "dark",
+    initialColorMode: "light",
+    useSystemColorMode: false,
   },
 });
 

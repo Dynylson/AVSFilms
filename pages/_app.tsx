@@ -1,4 +1,4 @@
-import { Box, ChakraProvider } from "@chakra-ui/react";
+import { Box, ChakraProvider, ColorModeScript } from "@chakra-ui/react";
 import { darkThemeStyle, theme } from "../src/styles/theme";
 
 import type { AppProps } from "next/app";
