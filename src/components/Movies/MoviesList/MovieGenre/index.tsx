@@ -1,5 +1,5 @@
 import { SelectGenres } from "./Select";
 
 export function MovieGenre() {
-  return;
+  return <h1></h1>;
 }
