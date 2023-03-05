@@ -51,7 +51,7 @@ export function MovieCard({
             <Flex>
               <Heading
                 color='gray.300'
-                fontSize={[".9rem", "1.5rem"]}
+                fontSize={[".9rem", "1.1rem"]}
                 mt='.8rem'
               >
                 {title}

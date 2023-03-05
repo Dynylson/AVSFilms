@@ -1,5 +1,3 @@
-import { useGenres } from "../hooks/useGenres";
-
 const API_KEY = "ee6c522f6ee1372ba637b097a93e6d60";
 const BASE_URL = "https://api.themoviedb.org/3/movie";
 const LANGUAGE = "language=pt-BR";

@@ -54,7 +54,7 @@ export function MoviesList({ fetch, category }: MovieProps) {
             </Heading>
             <Splide
               options={{
-                perPage: 9.5,
+                perPage: 9,
                 perMove: 3,
                 drag: "free",
                 gap: ".5rem",

@@ -20,27 +20,6 @@ export const theme = extendTheme({
   },
   config: {
     initialColorMode: "light",
-    useSystemColorMode: false,
-  },
-});
-
-export const darkThemeStyle = extendTheme({
-  styles: {
-    global: {
-      body: {
-        background: "#222831",
-      },
-    },
-  },
-  colors: {
-    "blue.900": "#3577ff",
-    "blue.500": "#2b2d42",
-    "white.900": "#ffffff",
-    "gray.700": "#d3d5f3",
-    "gray.300": "#838186",
-  },
-  fonts: {
-    heading: "Overpass",
-    body: "Overpass",
+    useSystemColorMode: true,
   },
 });
