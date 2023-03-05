@@ -28,7 +28,7 @@ export function MovieCard({
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
-    }, 1500);
+    }, 700);
   }, []);
 
   return (

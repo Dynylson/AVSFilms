@@ -4,6 +4,7 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 import { TrailerProps, IActor, IMovie } from "../../../../../typings";
+import { Actors } from "./Actors";
 import { MovieSimilar } from "./MovieSimilar";
 
 interface genre {
@@ -50,7 +51,6 @@ export function MovieDetails({
   const findTrailer = trailer.results?.find((trailer) => {
     return trailer.type == "Trailer";
   });
-  console.log(actors);
 
   return (
     <>
@@ -100,7 +100,11 @@ export function MovieDetails({
             <Heading mt='3rem' fontSize='1.5rem'>
               Trailer
             </Heading>
-            <AspectRatio border='5px solid #838186' borderRadius='8px'>
+            <AspectRatio
+              border='5px solid #838186'
+              borderRadius='8px'
+              mr='1rem'
+            >
               <iframe
                 title={title}
                 src={`https://www.youtube.com/embed/${findTrailer?.key}`}
@@ -130,14 +134,12 @@ export function MovieDetails({
                 return;
               })}
             </Flex>
-            <Flex>
-              {/* {actors?.map((actor) => {
-                console.log(actor);
-              })} */}
-            </Flex>
           </Flex>
         </Flex>
-        <MovieSimilar similar={similar} />
+        <Flex direction='column'>
+          <MovieSimilar similar={similar} />
+          <Actors actors={actors} />
+        </Flex>
       </Flex>
     </>
   );
