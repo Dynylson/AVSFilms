@@ -38,7 +38,7 @@ export function Actors({ actors }: ActorsProps) {
               return (
                 <SplideSlide key={id}>
                   <Link
-                    href={`/movie/${id}`}
+                    href={`/actor/${id}`}
                     _hover={{ text_decoration: "none" }}
                   >
                     <Flex maxW='100%' w='210px'>
