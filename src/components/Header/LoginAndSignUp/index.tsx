@@ -1,4 +1,11 @@
-import { Text, Flex, Button, Image } from "@chakra-ui/react";
+import {
+  Text,
+  Flex,
+  Button,
+  Image,
+  Avatar,
+  useColorModeValue,
+} from "@chakra-ui/react";
 import { GetServerSideProps } from "next";
 import { DarkTheme } from "./DarkTheme";
 
@@ -7,28 +14,37 @@ import { getSession, signIn, signOut, useSession } from "next-auth/react";
 export function LoginAndSignUp() {
   const { data: session } = useSession();
 
+  const login = useColorModeValue("#48BB78", "#48BB78");
+  const exit = useColorModeValue("#c53030", "#c53030");
+
   return (
     <Flex alignItems='center' gap='20px'>
-      {session?.user?.image && (
-        <>
-          <Image
-            src={session.user.image}
-            alt='Foto do Usuário'
-            w={["44px", "60px"]}
-            h={["44px", "60px"]}
-            borderRadius='50%'
-          />
-        </>
-      )}
-      <Text color='blue.900' fontWeight='bold'>
-        {session?.user?.name}
-      </Text>
+      <Flex alignItems='center' gap='.5rem'>
+        {session?.user?.image && session?.user?.name && (
+          <>
+            <Avatar
+              src={session.user.image}
+              name={session.user.name}
+              w={["44px", "60px"]}
+              h={["44px", "60px"]}
+              borderRadius='50%'
+            />
+          </>
+        )}
+        <Text color='blue.900' fontWeight='bold'>
+          {session?.user?.name}
+        </Text>
+      </Flex>
       {!session ? (
         <Button
           color='#fff'
           fontWeight='bold'
-          colorScheme='green'
-          _hover={{ textDecoration: "none", color: "#ddd" }}
+          bg={login}
+          _hover={{
+            textDecoration: "none",
+            color: "#ddd",
+            background: "#2F855A",
+          }}
           onClick={() => signIn("google")}
         >
           Login
@@ -40,8 +56,9 @@ export function LoginAndSignUp() {
           _hover={{
             textDecoration: "none",
             color: "#ddd",
+            background: "#9B2C2C",
           }}
-          colorScheme='red'
+          bg={exit}
           onClick={() => signOut()}
         >
           Sair
@@ -59,7 +76,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   if (session) {
     return {
       redirect: {
-        destination: "/home",
+        destination: "/",
         permanent: false,
       },
     };

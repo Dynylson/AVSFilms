@@ -72,8 +72,6 @@ export default function Movie() {
     fetchMovieById();
   }, [id]);
 
-  console.log(movie);
-
   return (
     <>
       {loading ? (

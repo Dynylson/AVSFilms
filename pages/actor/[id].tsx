@@ -25,7 +25,7 @@ export default function Actor() {
   useEffect(() => {
     const fetchActor = async () => {
       const response = await fetch(
-        `https://api.themoviedb.org/3/person/${id}?api_key=ee6c522f6ee1372ba637b097a93e6d60&language=pt-BR`
+        `https://api.themoviedb.org/3/person/${id}?api_key=ee6c522f6ee1372ba637b097a93e6d60&language=en-US`
       );
       const data = await response.json();
       setActor(data);
