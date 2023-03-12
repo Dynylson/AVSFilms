@@ -2,7 +2,6 @@ import {
   Text,
   Flex,
   Button,
-  Image,
   Avatar,
   useColorModeValue,
 } from "@chakra-ui/react";
@@ -10,6 +9,7 @@ import { GetServerSideProps } from "next";
 import { DarkTheme } from "./DarkTheme";
 
 import { getSession, signIn, signOut, useSession } from "next-auth/react";
+import Link from "next/link";
 
 export function LoginAndSignUp() {
   const { data: session } = useSession();
@@ -20,6 +20,9 @@ export function LoginAndSignUp() {
   return (
     <Flex alignItems='center' gap='20px'>
       <Flex alignItems='center' gap='.5rem'>
+        <Link href='/minha-lista'>
+          <Button mr='.5rem'>Minha lista</Button>
+        </Link>
         {session?.user?.image && session?.user?.name && (
           <>
             <Avatar
