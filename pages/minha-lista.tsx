@@ -7,16 +7,17 @@ import {
   Text,
   useBreakpointValue,
 } from "@chakra-ui/react";
-import { RiH1 } from "react-icons/ri";
+import { useEffect } from "react";
 import { useAddMoviesList } from "../src/hooks/useAddMoviesList";
 import { getMovieImage } from "../src/utils/requests";
 
 export default function MinhaLista() {
-  const { moviesList } = useAddMoviesList();
+  const { moviesList, handleDeleteMovie } = useAddMoviesList();
 
-  // function handleRemoveMovieFromList() {
-  //   const movieExists = moviesList.find((movie) => movie.title === title)
-  // }
+  function handleRemoveMovieFromList(movieTitle: any) {
+    const findMovie = moviesList.filter((movie) => movieTitle !== movie.title);
+    handleDeleteMovie(findMovie);
+  }
 
   const isWideVersion = useBreakpointValue({
     base: false,
@@ -74,6 +75,7 @@ export default function MinhaLista() {
                     background='#c53030'
                     color='white'
                     _hover={{ background: "#9B2C2C" }}
+                    onClick={() => handleRemoveMovieFromList(movie.title)}
                   >
                     Remover
                   </Button>

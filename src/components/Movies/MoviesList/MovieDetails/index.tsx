@@ -126,7 +126,11 @@ export function MovieDetails({
             <Heading mt='3rem' fontSize='1.5rem'>
               Sinopse
             </Heading>
-            <Text maxW='65ch'>{overview}</Text>
+            {overview ? (
+              <Text maxW='65ch'>{overview}</Text>
+            ) : (
+              <Text>(Não possui sinopse ainda 😒)</Text>
+            )}
 
             <Heading mt='3rem' fontSize='1.5rem'>
               Trailer

@@ -11,6 +11,7 @@ interface FilmsContextType {
   switchTheme: () => void;
   moviesCategoryByGenre: (id: number) => void;
   addMovieToList: (movie: IMovieList) => void;
+  handleDeleteMovie: (movies: IMovieList[]) => void;
 }
 
 interface IMovieList {
@@ -52,6 +53,10 @@ export function FilmsContextProvider({ children }: FilmsContextProviderProps) {
     setMoviesList([...moviesList, movie]);
   }
 
+  function handleDeleteMovie(movies: IMovieList[]) {
+    setMoviesList(movies);
+  }
+
   return (
     <FilmsContext.Provider
       value={{
@@ -62,6 +67,7 @@ export function FilmsContextProvider({ children }: FilmsContextProviderProps) {
         moviesCategoryByGenre,
         addMovieToList,
         moviesList,
+        handleDeleteMovie,
       }}
     >
       {children}
