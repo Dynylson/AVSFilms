@@ -7,9 +7,12 @@ import {
   Button,
 } from "@chakra-ui/react";
 import { useEffect } from "react";
-import { AiFillStar } from "react-icons/ai";
+
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { TrailerProps, IActor, IMovie } from "../../../../../typings";
 import { useAddMoviesList } from "../../../../hooks/useAddMoviesList";
@@ -69,6 +72,7 @@ export function MovieDetails({
       return movie.title === title;
     });
     if (!movieAlreadyExists) addMovieToList({ title, poster_path, overview });
+    toast.success("Filme adicionado!");
   }
 
   useEffect(() => {
@@ -113,6 +117,8 @@ export function MovieDetails({
                 maxW='auto'
                 justifyContent='start'
                 onClick={handleAddMoviesToList}
+                background='#48BB78'
+                _hover={{ background: "#2F855A" }}
               >
                 Adicionar à lista
               </Button>
@@ -166,6 +172,7 @@ export function MovieDetails({
           <Actors actors={actors} />
         </Flex>
       </Flex>
+      <ToastContainer position='top-left' autoClose={1000} />
     </>
   );
 }
