@@ -7,8 +7,16 @@ interface FilmsContextType {
   colorMode: string;
   genres: genre[];
   movieGenre: number;
+  moviesList: IMovieList[];
   switchTheme: () => void;
   moviesCategoryByGenre: (id: number) => void;
+  addMovieToList: (movie: IMovieList) => void;
+}
+
+interface IMovieList {
+  title: string;
+  poster_path: string;
+  overview: string;
 }
 
 export const FilmsContext = createContext({} as FilmsContextType);
@@ -21,6 +29,7 @@ export function FilmsContextProvider({ children }: FilmsContextProviderProps) {
   const { colorMode, toggleColorMode } = useColorMode();
   const [genres, setGenres] = useState<genre[]>([]);
   const [movieGenre, setMovieGenre] = useState(28);
+  const [moviesList, setMoviesList] = useState<IMovieList[]>([]);
 
   function switchTheme() {
     toggleColorMode();
@@ -39,6 +48,10 @@ export function FilmsContextProvider({ children }: FilmsContextProviderProps) {
     setMovieGenre(id);
   }
 
+  function addMovieToList(movie: IMovieList) {
+    setMoviesList([...moviesList, movie]);
+  }
+
   return (
     <FilmsContext.Provider
       value={{
@@ -47,6 +60,8 @@ export function FilmsContextProvider({ children }: FilmsContextProviderProps) {
         genres,
         movieGenre,
         moviesCategoryByGenre,
+        addMovieToList,
+        moviesList,
       }}
     >
       {children}

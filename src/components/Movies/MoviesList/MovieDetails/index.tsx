@@ -1,9 +1,18 @@
-import { Heading, Flex, Image, Text, AspectRatio } from "@chakra-ui/react";
+import {
+  Heading,
+  Flex,
+  Image,
+  Text,
+  AspectRatio,
+  Button,
+} from "@chakra-ui/react";
+import { useEffect } from "react";
 import { AiFillStar } from "react-icons/ai";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
 import { TrailerProps, IActor, IMovie } from "../../../../../typings";
+import { useAddMoviesList } from "../../../../hooks/useAddMoviesList";
 import { Actors } from "./Actors";
 import { MovieSimilar } from "./MovieSimilar";
 
@@ -30,6 +39,7 @@ interface MovieProps {
   trailer: TrailerProps;
   actors: IActor[];
   similar: IMovie[];
+  loading: boolean;
 }
 
 export function MovieDetails({
@@ -51,6 +61,19 @@ export function MovieDetails({
   const findTrailer = trailer.results?.find((trailer) => {
     return trailer.type == "Trailer";
   });
+
+  const { addMovieToList, moviesList } = useAddMoviesList();
+
+  function handleAddMoviesToList() {
+    const movieAlreadyExists = moviesList.find((movie) => {
+      return movie.title === title;
+    });
+    if (!movieAlreadyExists) addMovieToList({ title, poster_path, overview });
+  }
+
+  useEffect(() => {
+    console.log(moviesList);
+  }, [moviesList]);
 
   return (
     <>
@@ -90,6 +113,13 @@ export function MovieDetails({
                   </Text>
                 );
               })}
+              <Button
+                maxW='auto'
+                justifyContent='start'
+                onClick={handleAddMoviesToList}
+              >
+                Adicionar à lista
+              </Button>
             </Flex>
 
             <Heading mt='3rem' fontSize='1.5rem'>

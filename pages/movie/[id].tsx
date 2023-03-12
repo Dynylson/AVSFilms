@@ -91,6 +91,7 @@ export default function Movie() {
             trailer={trailer}
             actors={actors}
             similar={similar}
+            loading={loading}
           />
         </>
       )}
