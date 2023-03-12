@@ -7,9 +7,11 @@ import {
   Text,
   useBreakpointValue,
 } from "@chakra-ui/react";
-import { useEffect } from "react";
 import { useAddMoviesList } from "../src/hooks/useAddMoviesList";
 import { getMovieImage } from "../src/utils/requests";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function MinhaLista() {
   const { moviesList, handleDeleteMovie } = useAddMoviesList();
@@ -17,6 +19,7 @@ export default function MinhaLista() {
   function handleRemoveMovieFromList(movieTitle: any) {
     const findMovie = moviesList.filter((movie) => movieTitle !== movie.title);
     handleDeleteMovie(findMovie);
+    toast.error("Filme removido da lista!");
   }
 
   const isWideVersion = useBreakpointValue({
@@ -64,7 +67,7 @@ export default function MinhaLista() {
                       {movie.title}
                     </Heading>
                     {isWideVersion && movie.overview ? (
-                      <Text maxW='70ch' mt='.5rem'>
+                      <Text maxW='100ch' mt='.5rem'>
                         {movie.overview}
                       </Text>
                     ) : (
@@ -76,6 +79,7 @@ export default function MinhaLista() {
                     color='white'
                     _hover={{ background: "#9B2C2C" }}
                     onClick={() => handleRemoveMovieFromList(movie.title)}
+                    mt='.5rem'
                   >
                     Remover
                   </Button>
@@ -85,6 +89,7 @@ export default function MinhaLista() {
           })}
         </>
       )}
+      <ToastContainer position='top-left' autoClose={1000} />
     </Flex>
   );
 }

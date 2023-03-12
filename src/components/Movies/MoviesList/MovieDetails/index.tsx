@@ -72,12 +72,8 @@ export function MovieDetails({
       return movie.title === title;
     });
     if (!movieAlreadyExists) addMovieToList({ title, poster_path, overview });
-    toast.success("Filme adicionado!");
+    toast.success("Filme adicionado à lista!");
   }
-
-  useEffect(() => {
-    console.log(moviesList);
-  }, [moviesList]);
 
   return (
     <>
