@@ -13,6 +13,7 @@ export function Header() {
           maxW={1700}
           mx='auto'
           py='1.3rem'
+          px='1rem'
           justifyContent='space-between'
           alignItems='center'
         >

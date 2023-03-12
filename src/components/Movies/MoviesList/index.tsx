@@ -42,7 +42,7 @@ export function MoviesList({ fetch, category }: MovieProps) {
       {!fetch ? (
         <Spinner />
       ) : (
-        <Flex maxW={1700} mx='auto' ml={[".7rem", "auto"]} overflow='hidden'>
+        <Flex maxW={1700} mx='auto' px='1rem' overflow='hidden'>
           <Flex direction='column'>
             <Heading
               color='gray.300'

@@ -20,7 +20,7 @@ export default function Home({
   nowPlaying,
 }: HomeProps) {
   return (
-    <Box mx='1.5rem'>
+    <Box>
       {/* <BannerHome /> */}
       <MovieGenre />
       <MoviesList fetch={popular} category='Em Alta' />

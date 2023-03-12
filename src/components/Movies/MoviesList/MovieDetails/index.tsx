@@ -77,7 +77,7 @@ export function MovieDetails({
 
   return (
     <>
-      <Flex maxW={1700} mx='auto' mt='3rem'>
+      <Flex maxW={1700} mx='auto' mt='3rem' px='1rem'>
         <Flex
           direction={["column", "row"]}
           gap='2rem'
@@ -95,12 +95,8 @@ export function MovieDetails({
           <Flex direction='column' ml={[".7rem", "auto"]}>
             <Flex alignItems='center' gap='.5rem'>
               <Heading>{title}</Heading>
-              <AiFillStar size={25} fill='#F3F808' />
-              <Text color='blue.900' fontWeight='bold'>
-                {vote_average?.toFixed(2)}
-              </Text>
             </Flex>
-            <Flex gap='1rem'>
+            <Flex gap='1rem' flexWrap='wrap'>
               {genres?.map((genre) => {
                 return (
                   <Text
@@ -121,7 +117,6 @@ export function MovieDetails({
                 Adicionar à lista
               </Button>
             </Flex>
-
             <Heading mt='3rem' fontSize='1.5rem'>
               Sinopse
             </Heading>
