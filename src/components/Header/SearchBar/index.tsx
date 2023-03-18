@@ -32,6 +32,11 @@ export function SearchBar() {
               placeholder='Busque algum filme...'
               value={search}
               onChange={({ target }) => setSearch(target.value)}
+              onKeyPress={(event) => {
+                if (event.key === "Enter") {
+                  onSubmit();
+                }
+              }}
             />
             <AiOutlineSearch size={30} color='white.900' onClick={onSubmit} />
           </Flex>
