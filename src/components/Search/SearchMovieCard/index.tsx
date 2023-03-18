@@ -5,7 +5,10 @@ import {
   Text,
   useBreakpointValue,
 } from "@chakra-ui/react";
+
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { formatDate } from "../../../utils/requests";
 
 interface SearchMoviesCardProps {
   id: number;
@@ -27,9 +30,19 @@ export function SearchMovieCard({
     lg: true,
   });
 
+  const [date, setDate] = useState("");
+
   const getPosterURL = (posterpath: string) => {
     return `https://www.themoviedb.org/t/p/w220_and_h330_face${posterpath}`;
   };
+
+  useEffect(() => {
+    const awaitDate = async () => {
+      const dateFormated = await formatDate(release_date);
+      setDate(dateFormated);
+    };
+    awaitDate();
+  }, [release_date]);
 
   return (
     <Link href={`/movie/${id}`}>
@@ -52,7 +65,7 @@ export function SearchMovieCard({
           <Heading fontSize='1.1rem' mt='.8rem'>
             {title}
           </Heading>
-          <Text>{release_date}</Text>
+          <Text color='blue.900'>Lançamento: {date}</Text>
           {isWideVersion && <Text mt='1rem'>{overview}</Text>}
         </Flex>
       </Flex>

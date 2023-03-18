@@ -5,7 +5,7 @@ import {
   Text,
   useBreakpointValue,
 } from "@chakra-ui/react";
-import { getMovieImage } from "../../../utils/requests";
+import { formatDate, getMovieImage } from "../../../utils/requests";
 import Link from "next/link";
 
 interface SearchTvShowCardProps {
@@ -16,7 +16,7 @@ interface TvShowProps {
   id: number;
   name: string;
   overview: string;
-  first_air_date: number;
+  first_air_date: string;
   poster_path: string;
 }
 
@@ -25,6 +25,8 @@ export function SearchTvShowCard({ data }: SearchTvShowCardProps) {
     base: false,
     lg: true,
   });
+
+  // const dateFormated = formatDate(data.first_air_date);
 
   return (
     <>

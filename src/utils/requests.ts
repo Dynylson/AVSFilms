@@ -1,3 +1,5 @@
+import { format, parseISO } from "date-fns";
+
 const API_KEY = "ee6c522f6ee1372ba637b097a93e6d60";
 const BASE_URL = "https://api.themoviedb.org/3/movie";
 const LANGUAGE = "language=pt-BR";
@@ -13,4 +15,9 @@ export const requests = {
 
 export const getMovieImage = (posterpath: string) => {
   return `https://www.themoviedb.org/t/p/w220_and_h330_face${posterpath}`;
+};
+
+export const formatDate = async (date: string) => {
+  const dateFormated = format(parseISO(date), "dd-MM-yyyy");
+  return await Promise.resolve(dateFormated);
 };
