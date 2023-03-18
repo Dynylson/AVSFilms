@@ -6,6 +6,11 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { SearchMovieCard } from "./SearchMovieCard";
 import axios from "axios";
+import { SearchTvShowCard } from "./SearchTvShowCard";
+
+interface SearchMoviesProps {
+  searchByMovieOrTvShow: string;
+}
 
 interface MoviesProps {
   id: number;
@@ -16,24 +21,31 @@ interface MoviesProps {
   poster_path: string;
 }
 
-export function SearchMovies() {
+export function SearchMovies({ searchByMovieOrTvShow }: SearchMoviesProps) {
   const [movies, setMovies] = useState<MoviesProps[]>([]);
+  const [tvSeries, setTvSeries] = useState([]);
   const [page, setPage] = useState(1);
 
   const { query } = useRouter();
   const q = query.movie;
 
-  const url = `https://api.themoviedb.org/3/search/movie?api_key=ee6c522f6ee1372ba637b097a93e6d60&query=${q}&language=pt-BR&page=${page}`;
+  const url =
+    searchByMovieOrTvShow === "filmes"
+      ? `https://api.themoviedb.org/3/search/movie?api_key=ee6c522f6ee1372ba637b097a93e6d60&query=${q}&language=pt-BR&page=${page}`
+      : `https://api.themoviedb.org/3/search/tv?api_key=ee6c522f6ee1372ba637b097a93e6d60&query=${q}&language=pt-BR`;
 
   useEffect(() => {
     const fetchMoviesByQuery = async () => {
       const response = await axios.get(url);
-      console.log(response);
-      setMovies(response.data.results);
+      if (url.includes("tv")) {
+        setTvSeries(response.data.results);
+      } else {
+        setMovies(response.data.results);
+        console.log(tvSeries);
+      }
     };
     fetchMoviesByQuery();
-  }, [q, url]);
-  console.log(movies);
+  }, [q, url, tvSeries]);
 
   useEffect(() => {
     setPage(1);
@@ -43,10 +55,9 @@ export function SearchMovies() {
     setPage((state) => state + 1);
     window.scrollTo(0, 0);
   }
-  console.log(page);
 
   return (
-    <Flex direction='column' maxW={1700} mx='auto' mt='2rem'>
+    <>
       <Flex gap='.3rem'>
         <Text fontSize='1.5rem' mb='1.3rem' ml={[".7rem", "0"]}>
           {movies.length > 0
@@ -63,22 +74,36 @@ export function SearchMovies() {
         </Text>
       </Flex>
       <Flex direction='column'>
-        {movies?.map(({ id, title, poster_path, release_date, overview }) => {
-          return (
-            <>
-              {(
-                <SearchMovieCard
-                  key={id}
-                  id={id}
-                  src={poster_path}
-                  title={title}
-                  release_date={release_date}
-                  overview={overview}
-                />
-              ) || <Skeleton count={5} />}
-            </>
-          );
-        })}
+        {url.includes("https://api.themoviedb.org/3/search/movie")
+          ? movies?.map(
+              ({ id, title, poster_path, release_date, overview }) => {
+                return (
+                  <>
+                    {(
+                      <SearchMovieCard
+                        key={id}
+                        id={id}
+                        src={poster_path}
+                        title={title}
+                        release_date={release_date}
+                        overview={overview}
+                      />
+                    ) || <Skeleton count={5} />}
+                  </>
+                );
+              }
+            )
+          : tvSeries.map(
+              ({ id, name, overview, first_air_date, poster_path }) => {
+                return (
+                  <>
+                    <SearchTvShowCard
+                      data={{ id, name, overview, first_air_date, poster_path }}
+                    />
+                  </>
+                );
+              }
+            )}
       </Flex>
       {movies.length === 0 ? (
         <Text fontSize='1.5rem' mb='1.3rem' ml={[".7rem", "0"]}>
@@ -89,6 +114,6 @@ export function SearchMovies() {
           Próxima página
         </Button>
       )}
-    </Flex>
+    </>
   );
 }
