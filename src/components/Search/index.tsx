@@ -32,7 +32,7 @@ export function SearchMovies({ searchByMovieOrTvShow }: SearchMoviesProps) {
   const url =
     searchByMovieOrTvShow === "filmes"
       ? `https://api.themoviedb.org/3/search/movie?api_key=ee6c522f6ee1372ba637b097a93e6d60&query=${q}&language=pt-BR&page=${page}`
-      : `https://api.themoviedb.org/3/search/tv?api_key=ee6c522f6ee1372ba637b097a93e6d60&query=${q}&language=pt-BR`;
+      : `https://api.themoviedb.org/3/search/tv?api_key=ee6c522f6ee1372ba637b097a93e6d60&query=${q}&language=pt-BR&page=${page}`;
 
   useEffect(() => {
     const fetchMoviesByQuery = async () => {
