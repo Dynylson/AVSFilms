@@ -12,7 +12,7 @@ interface FilmsContextType {
   moviesCategoryByGenre: (id: number) => void;
   addMovieToList: (movie: IMovieList) => void;
   handleDeleteMovie: (movies: IMovieList[]) => void;
-  SearchTvShowByQuery: (id: number) => any;
+  SearchTvShowByQuery: (id: any) => any;
 }
 
 interface IMovieList {
