@@ -12,6 +12,7 @@ interface FilmsContextType {
   moviesCategoryByGenre: (id: number) => void;
   addMovieToList: (movie: IMovieList) => void;
   handleDeleteMovie: (movies: IMovieList[]) => void;
+  SearchTvShowByQuery: (id: number) => any;
 }
 
 interface IMovieList {
@@ -57,6 +58,15 @@ export function FilmsContextProvider({ children }: FilmsContextProviderProps) {
     setMoviesList(movies);
   }
 
+  async function SearchTvShowByQuery(id: number) {
+    const url = await fetch(
+      `https://api.themoviedb.org/3/tv/${id}?api_key=ee6c522f6ee1372ba637b097a93e6d60&language=pt-BR`
+    );
+    const response = await url.json();
+
+    return response;
+  }
+
   return (
     <FilmsContext.Provider
       value={{
@@ -68,6 +78,7 @@ export function FilmsContextProvider({ children }: FilmsContextProviderProps) {
         addMovieToList,
         moviesList,
         handleDeleteMovie,
+        SearchTvShowByQuery,
       }}
     >
       {children}

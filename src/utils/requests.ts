@@ -14,7 +14,11 @@ export const requests = {
 };
 
 export const getMovieImage = (posterpath: string) => {
-  return `https://www.themoviedb.org/t/p/w220_and_h330_face${posterpath}`;
+  return `https://www.themoviedb.org/t/p/w300_and_h450_face${posterpath}`;
+};
+
+export const getBannerImage = (backdrop_path: string) => {
+  return `https://www.themoviedb.org/t/p/w1920_and_h800_multi_faces${backdrop_path}`;
 };
 
 export const formatDate = async (date: string) => {

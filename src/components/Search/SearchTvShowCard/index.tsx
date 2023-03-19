@@ -30,7 +30,7 @@ export function SearchTvShowCard({ data }: SearchTvShowCardProps) {
 
   return (
     <>
-      <Link href={`/movie/${data.id}`}>
+      <Link href={`/tv/${data.id}`}>
         <Flex
           border='1px solid rgb(227, 227, 227)'
           borderRadius='8px'
