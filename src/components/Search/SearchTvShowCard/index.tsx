@@ -50,7 +50,7 @@ export function SearchTvShowCard({ data }: SearchTvShowCardProps) {
             <Heading fontSize='1.1rem' mt='.8rem'>
               {data.name}
             </Heading>
-            <Text>{data.first_air_date}</Text>
+            <Text color='blue.900'>Lançamento: {data.first_air_date}</Text>
             {isWideVersion && <Text mt='1rem'>{data.overview}</Text>}
           </Flex>
         </Flex>

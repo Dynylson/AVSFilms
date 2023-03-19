@@ -5,6 +5,7 @@ import { useTvShowData } from "../../src/hooks/useTvShowData";
 import { Box, Flex, Heading, Image, Text } from "@chakra-ui/react";
 
 import { getMovieImage, getBannerImage } from "../../src/utils/requests";
+import { ButtonList } from "../../src/components/ButtonList";
 
 interface TvShowGenre {
   id: number;
@@ -43,14 +44,14 @@ export default function Tv() {
       backgroundSize='cover'
       height='600px'
     >
-      <Flex maxW={1500} mx='auto' px='3rem'>
-        <Flex
-          gap='1rem'
-          mt='3rem'
-          alignItems='center'
-          backgroundColor='rgba(0, 0, 0, .3)'
-          p='1rem'
-        >
+      <Flex
+        maxW='100%'
+        h='600px'
+        mx='auto'
+        px='3rem'
+        backgroundColor='rgba(0, 0, 0, .3)'
+      >
+        <Flex gap='1rem' mt='3rem' alignItems='center' p='1rem'>
           <Image
             src={getMovieImage(tvShow.poster_path)}
             minW='300px'
@@ -59,17 +60,36 @@ export default function Tv() {
             alt={tvShow.name}
           />
           <Flex direction='column' gap='1rem'>
-            <Heading fontSize='2rem'>{tvShow.name}</Heading>
-            <Flex>
+            <Heading fontSize='2rem' color='white'>
+              {tvShow.name}
+            </Heading>
+            <Flex gap='.5rem'>
               {tvShow?.genres?.map((genre) => {
-                return <Text key={genre.id}>{genre.name}</Text>;
+                return (
+                  <Text
+                    key={genre.id}
+                    border='1px solid white'
+                    color='white'
+                    p='.5rem'
+                  >
+                    {genre.name}
+                  </Text>
+                );
               })}
             </Flex>
+            <ButtonList
+              w='10rem'
+              title={tvShow.name}
+              poster_path={tvShow.poster_path}
+              overview={tvShow.overview}
+            />
             <Box>
-              <Heading as='h3' fontSize='1.2rem'>
+              <Heading as='h3' fontSize='1.2rem' color='white'>
                 Sinopse
               </Heading>
-              <Text>{tvShow.overview}</Text>
+              <Text color='white' maxW='80ch'>
+                {tvShow.overview}
+              </Text>
             </Box>
           </Flex>
         </Flex>

@@ -15,7 +15,7 @@ interface FilmsContextType {
   SearchTvShowByQuery: (id: any) => any;
 }
 
-interface IMovieList {
+export interface IMovieList {
   title: string;
   poster_path: string;
   overview: string;
