@@ -10,10 +10,9 @@ export function TvShowActorsCard({ data }: TvShowActorsCardProps) {
   return (
     <Flex
       direction='column'
-      // w='200px'
-      // h='200px'
+      h='380px'
       border='1px solid rgba(227, 227, 227, 1)'
-      pb='10px'
+      pb='1rem'
       borderRadius='8px'
       m='10px 4px 10px 10px'
     >
@@ -23,10 +22,10 @@ export function TvShowActorsCard({ data }: TvShowActorsCardProps) {
         borderRadius='8px 8px 0 0'
       />
       <Box m='.5rem'>
-        <Heading as='h2' fontSize='1.2rem'>
+        <Heading as='h2' fontSize='1rem'>
           {data?.name}
         </Heading>
-        <Text>{data?.character}</Text>
+        <Text fontSize='.9rem'>{data?.character}</Text>
       </Box>
     </Flex>
   );
