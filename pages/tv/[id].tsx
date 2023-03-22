@@ -46,7 +46,7 @@ export default function Tv() {
   const [tvShow, setTvShow] = useState({} as ITvShow);
   const [tvShowActors, setTvShowActors] = useState<ITvShowActors[]>([]);
 
-  const urlActors = `https://api.themoviedb.org/3/tv/${id}/credits?api_key=ee6c522f6ee1372ba637b097a93e6d60`;
+  const urlActors = `https://api.themoviedb.org/3/tv/${id}/aggregate_credits?api_key=ee6c522f6ee1372ba637b097a93e6d60`;
 
   useEffect(() => {
     const dataTvShow = async () => {
@@ -59,7 +59,7 @@ export default function Tv() {
       setTvShowActors(dataActors.cast);
     };
     dataTvShow();
-  }, [SearchTvShowByQuery, id]);
+  }, [SearchTvShowByQuery, id, urlActors]);
 
   return (
     <>
@@ -120,6 +120,9 @@ export default function Tv() {
           </Flex>
         </Flex>
       </Box>
+      <Heading maxW={1700} mx='auto' pl='1rem' mt='2rem'>
+        Elenco
+      </Heading>
       <Flex maxW={1700} mx='auto' px='1rem' mt='3rem'>
         <TvShowActors actors={tvShowActors} />
       </Flex>

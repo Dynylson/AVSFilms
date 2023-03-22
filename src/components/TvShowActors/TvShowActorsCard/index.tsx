@@ -10,7 +10,7 @@ export function TvShowActorsCard({ data }: TvShowActorsCardProps) {
   return (
     <Flex
       direction='column'
-      h='380px'
+      h='350px'
       border='1px solid rgba(227, 227, 227, 1)'
       pb='1rem'
       borderRadius='8px'
