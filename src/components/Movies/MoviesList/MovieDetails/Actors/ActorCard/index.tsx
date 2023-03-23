@@ -1,15 +1,20 @@
 import { Flex, Heading, Text, Image } from "@chakra-ui/react";
-import { IActor } from "../../../../../../../pages/actor/[id]";
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+
+import { IActor, IActorMovie } from "../../../../../../../pages/actor/[id]";
 import { getMovieImage } from "../../../../../../utils/requests";
 
 interface ActorCardProps {
   data: IActor;
+  movies: IActorMovie[];
 }
 
-export function ActorCard({ data }: ActorCardProps) {
+export function ActorCard({ data, movies }: ActorCardProps) {
   return (
     <>
-      <Flex maxW={1700} mx='auto' mt='3rem'>
+      <Flex maxW={1700} mx='auto' mt='3rem' px='1rem'>
         <Flex
           direction={["column", "row"]}
           gap='2rem'
@@ -41,10 +46,29 @@ export function ActorCard({ data }: ActorCardProps) {
                 {data.known_for_department}
               </Text>
             </Heading>
-            <Heading fontSize='2rem' mb='.5rem'>
+            <Heading fontSize='1.5rem' mb='.5rem'>
               Biografia
             </Heading>
             <Text maxW='60ch'>{data.biography}</Text>
+            <Heading fontSize='1.5rem' mt='1rem'>
+              Conhecido(a) por
+            </Heading>
+
+            <Swiper>
+              {movies?.map((movie) => {
+                return (
+                  <SwiperSlide key={movie.id}>
+                    <Flex direction='column'>
+                      <Image
+                        src={getMovieImage(movie.poster_path)}
+                        alt={movie.original_title}
+                      />
+                      <Text alignSelf='center'>{movie.original_title}</Text>
+                    </Flex>
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
           </Flex>
         </Flex>
       </Flex>
