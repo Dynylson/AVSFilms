@@ -4,7 +4,6 @@ import { TvShowActorsCard } from "./TvShowActorsCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/mousewheel";
-import { Button } from "@chakra-ui/react";
 
 interface TvShowActorsProps {
   actors: ITvShowActors[];

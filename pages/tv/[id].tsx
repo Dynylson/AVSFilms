@@ -79,13 +79,13 @@ export default function Tv() {
           <Flex gap='1rem' mt='3rem' alignItems='center' p='1rem'>
             <Image
               src={getMovieImage(tvShow.poster_path)}
-              minW='300px'
-              minH='300px'
+              minW={['150px','300px']}
+              minH={['150px','300px']}
               borderRadius='12px'
               alt={tvShow.name}
             />
             <Flex direction='column' gap='1rem'>
-              <Heading fontSize='2rem' color='white'>
+              <Heading fontSize={['1rem','2rem']} color='white'>
                 {tvShow.name}
               </Heading>
               <Flex gap='.5rem'>

@@ -6,7 +6,7 @@ export default function Search() {
   const [selectValue, setSelectValue] = useState("filmes");
 
   return (
-    <Flex direction='column' maxW={1700} mx='auto' mt='2rem'>
+    <Flex direction='column' maxW={1700} mx='auto' mt='2rem' px='1rem'>
       <Select
         w='300px'
         mb='1rem'

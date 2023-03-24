@@ -1,7 +1,7 @@
-import { Flex, Heading, Text, Image } from "@chakra-ui/react";
+import { Flex, Heading, Text, Image, Box } from "@chakra-ui/react";
+import Link from "next/link";
 
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
+import { AiFillStar } from 'react-icons/ai'
 
 import { IActor, IActorMovie } from "../../../../../../../pages/actor/[id]";
 import { getMovieImage } from "../../../../../../utils/requests";
@@ -12,6 +12,14 @@ interface ActorCardProps {
 }
 
 export function ActorCard({ data, movies }: ActorCardProps) {
+  
+
+  const arrayMoviesReduced = movies?.filter((movie, index) => {
+    return index < 20;
+  });
+
+  // console.log(arrayMoviesReduced);
+
   return (
     <>
       <Flex maxW={1700} mx='auto' mt='3rem' px='1rem'>
@@ -53,22 +61,32 @@ export function ActorCard({ data, movies }: ActorCardProps) {
             <Heading fontSize='1.5rem' mt='1rem'>
               Conhecido(a) por
             </Heading>
-
-            <Swiper>
-              {movies?.map((movie) => {
-                return (
-                  <SwiperSlide key={movie.id}>
-                    <Flex direction='column'>
-                      <Image
-                        src={getMovieImage(movie.poster_path)}
-                        alt={movie.original_title}
-                      />
-                      <Text alignSelf='center'>{movie.original_title}</Text>
-                    </Flex>
-                  </SwiperSlide>
-                );
-              })}
-            </Swiper>
+              <Flex direction='column' gap='1rem'>
+                {arrayMoviesReduced?.map((movie) => {
+                  return (
+                    <Link href={`/movie/${movie.id}`}>
+                      <Flex gap='.5rem' alignItems='center' >
+                        <Image
+                          height='9.375rem'
+                          src={getMovieImage(movie.poster_path)}
+                          alt={movie.original_title}
+                          borderRadius='8px'
+                        />
+                        <Box>
+                          <Box _hover={{ color: '#ccc' }}>
+                            <Text>{movie.original_title}</Text>
+                            <Box fontSize='.9rem' color='#9e9e9e'>
+                              <Text>{movie.character}</Text>
+                              <Text>{movie.media_type === 'movie' ? "Filme" : 'Série'}</Text>
+                            </Box>
+                          </Box>
+                          <Flex alignItems='center' gap='.3rem' ><AiFillStar color='#e9d23d' /> <Text fontSize='.7rem'>{Number(movie.vote_average).toFixed(1)}</Text></Flex>
+                        </Box>
+                      </Flex>
+                    </Link>
+                  );
+                })}
+              </Flex>
           </Flex>
         </Flex>
       </Flex>
