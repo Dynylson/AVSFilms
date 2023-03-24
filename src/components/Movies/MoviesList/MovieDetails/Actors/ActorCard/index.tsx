@@ -1,7 +1,7 @@
-import { Flex, Heading, Text, Image, Box } from "@chakra-ui/react";
+import { Flex, Heading, Text, Image, Box, Button } from "@chakra-ui/react";
 import Link from "next/link";
 
-import { AiFillStar } from 'react-icons/ai'
+import { AiFillStar } from "react-icons/ai";
 
 import { IActor, IActorMovie } from "../../../../../../../pages/actor/[id]";
 import { getMovieImage } from "../../../../../../utils/requests";
@@ -12,8 +12,6 @@ interface ActorCardProps {
 }
 
 export function ActorCard({ data, movies }: ActorCardProps) {
-  
-
   const arrayMoviesReduced = movies?.filter((movie, index) => {
     return index < 20;
   });
@@ -57,15 +55,23 @@ export function ActorCard({ data, movies }: ActorCardProps) {
             <Heading fontSize='1.5rem' mb='.5rem'>
               Biografia
             </Heading>
-            <Text maxW='60ch'>{data.biography}</Text>
-            <Heading fontSize='1.5rem' mt='1rem'>
+            <Text maxW='80ch'>{data.biography}</Text>
+            <Heading fontSize='1.5rem' mt='1rem' mb='1rem'>
               Conhecido(a) por
             </Heading>
-              <Flex direction='column' gap='1rem'>
-                {arrayMoviesReduced?.map((movie) => {
-                  return (
+            <Flex direction='column' gap='1rem'>
+              {arrayMoviesReduced?.map((movie) => {
+                return (
+                  <Flex
+                    key={movie.id}
+                    gap='.5rem'
+                    alignItems='center'
+                    justifyContent='space-between'
+                    borderBottom='1px solid #ccc'
+                    py='1rem'
+                  >
                     <Link href={`/movie/${movie.id}`}>
-                      <Flex gap='.5rem' alignItems='center' >
+                      <Flex alignItems='center' gap='1rem'>
                         <Image
                           height='9.375rem'
                           src={getMovieImage(movie.poster_path)}
@@ -73,20 +79,33 @@ export function ActorCard({ data, movies }: ActorCardProps) {
                           borderRadius='8px'
                         />
                         <Box>
-                          <Box _hover={{ color: '#ccc' }}>
+                          <Box _hover={{ color: "#ccc" }}>
                             <Text>{movie.original_title}</Text>
                             <Box fontSize='.9rem' color='#9e9e9e'>
                               <Text>{movie.character}</Text>
-                              <Text>{movie.media_type === 'movie' ? "Filme" : 'Série'}</Text>
+                              <Text>
+                                {movie.media_type === "movie"
+                                  ? "Filme"
+                                  : "Série"}
+                              </Text>
                             </Box>
                           </Box>
-                          <Flex alignItems='center' gap='.3rem' ><AiFillStar color='#e9d23d' /> <Text fontSize='.7rem'>{Number(movie.vote_average).toFixed(1)}</Text></Flex>
+                          <Flex alignItems='center' gap='.3rem'>
+                            <AiFillStar color='#e9d23d' />{" "}
+                            <Text fontSize='.7rem'>
+                              {Number(movie.vote_average).toFixed(1)}
+                            </Text>
+                          </Flex>
                         </Box>
                       </Flex>
                     </Link>
-                  );
-                })}
-              </Flex>
+                    <Flex>
+                      <Button>Mais</Button>
+                    </Flex>
+                  </Flex>
+                );
+              })}
+            </Flex>
           </Flex>
         </Flex>
       </Flex>
