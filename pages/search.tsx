@@ -1,5 +1,7 @@
-import { Select, Flex } from "@chakra-ui/react";
 import { useState } from "react";
+
+import { Select, Flex } from "@chakra-ui/react";
+
 import { SearchMovies } from "../src/components/Search";
 
 export default function Search() {

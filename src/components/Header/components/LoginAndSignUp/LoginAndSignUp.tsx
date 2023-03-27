@@ -6,7 +6,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { GetServerSideProps } from "next";
-import { DarkTheme } from "./DarkTheme";
+import { DarkTheme } from "./components/DarkTheme";
 
 import { getSession, signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";

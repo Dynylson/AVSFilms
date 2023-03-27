@@ -5,9 +5,10 @@ import {
   Image,
   Box,
   useBreakpointValue,
+  Skeleton,
 } from "@chakra-ui/react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
-import { IActor } from "../../../../../../typings";
+import { IActor } from "../../../../../@types/typings";
 import { getMovieImage } from "../../../../../utils/requests";
 
 interface ActorsProps {
@@ -43,16 +44,28 @@ export function Actors({ actors }: ActorsProps) {
                   >
                     <Flex maxW='100%' w='210px'>
                       <Box>
-                        <Image
-                          src={getMovieImage(profile_path)}
-                          alt={name}
-                          borderRadius='8px'
-                          bg='blue'
-                          maxW='100%'
-                        />
-                        <Heading fontSize='1rem' mt='.5rem'>
-                          {name} <br /> ({character})
-                        </Heading>
+                        <Skeleton
+                          height='300px'
+                          isLoaded={!!actors}
+                          fadeDuration={4}
+                        >
+                          <Image
+                            src={getMovieImage(profile_path)}
+                            alt={name}
+                            borderRadius='8px'
+                            bg='blue'
+                            maxW='100%'
+                          />
+                        </Skeleton>
+                        <Skeleton
+                          height='60px'
+                          isLoaded={!!actors}
+                          fadeDuration={4}
+                        >
+                          <Heading fontSize='1rem' mt='.5rem'>
+                            {name} <br /> ({character})
+                          </Heading>
+                        </Skeleton>
                       </Box>
                     </Flex>
                   </Link>

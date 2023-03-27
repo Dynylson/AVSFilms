@@ -4,7 +4,7 @@ import { MoviesList } from "../src/components/Movies/MoviesList";
 import { MovieGenre } from "../src/components/Movies/MoviesList/MovieGenre";
 
 import { requests } from "../src/utils/requests";
-import { IMovie } from "../typings";
+import { IMovie } from "../src/@types/typings";
 
 interface HomeProps {
   topRated: IMovie[];
@@ -21,7 +21,6 @@ export default function Home({
 }: HomeProps) {
   return (
     <Box>
-      {/* <BannerHome /> */}
       <MovieGenre />
       <MoviesList fetch={popular} category='Em Alta' />
       <MoviesList fetch={topRated} category='Renomados' />

@@ -1,4 +1,4 @@
-import { Heading, Flex, Spinner } from "@chakra-ui/react";
+import { Heading, Flex, Spinner, Skeleton } from "@chakra-ui/react";
 
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
@@ -39,9 +39,7 @@ interface MovieProps {
 export function MoviesList({ fetch, category }: MovieProps) {
   return (
     <>
-      {!fetch ? (
-        <Spinner />
-      ) : (
+      <Skeleton isLoaded={!!fetch}>
         <Flex maxW={1700} mx='auto' px='1rem' overflow='hidden'>
           <Flex direction='column'>
             <Heading
@@ -83,7 +81,7 @@ export function MoviesList({ fetch, category }: MovieProps) {
             </Splide>
           </Flex>
         </Flex>
-      )}
+      </Skeleton>
     </>
   );
 }

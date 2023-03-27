@@ -1,12 +1,16 @@
-import { Text, Flex, Button } from "@chakra-ui/react";
-import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
+import axios from "axios";
+
+import { useEffect, useState } from "react";
 
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import { SearchMovieCard } from "./SearchMovieCard";
-import axios from "axios";
-import { SearchTvShowCard } from "./SearchTvShowCard";
+
+import { Text, Flex, Button } from "@chakra-ui/react";
+
+import { SearchMovieCard } from "./components/SearchMovieCard";
+import { SearchTvShowCard } from "./components/SearchTvShowCard";
+
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 interface SearchMoviesProps {
   searchByMovieOrTvShow: string;
@@ -25,6 +29,7 @@ export function SearchMovies({ searchByMovieOrTvShow }: SearchMoviesProps) {
   const [movies, setMovies] = useState<MoviesProps[]>([]);
   const [tvSeries, setTvSeries] = useState([]);
   const [page, setPage] = useState(1);
+  const [isLoading, setIsLoading] = useState<null | boolean>(null);
 
   const { query } = useRouter();
   const q = query.movie;
@@ -36,13 +41,14 @@ export function SearchMovies({ searchByMovieOrTvShow }: SearchMoviesProps) {
 
   useEffect(() => {
     const fetchMoviesByQuery = async () => {
+      setIsLoading(true);
       const response = await axios.get(url);
       if (url.includes("tv")) {
         setTvSeries(response.data.results);
       } else {
         setMovies(response.data.results);
-        console.log(tvSeries);
       }
+      setIsLoading(false);
     };
     fetchMoviesByQuery();
   }, [q, url, tvSeries]);
@@ -57,7 +63,7 @@ export function SearchMovies({ searchByMovieOrTvShow }: SearchMoviesProps) {
   }
 
   return (
-    <>
+    <SkeletonTheme baseColor='#202020' highlightColor='#444'>
       <Flex gap='.3rem'>
         <Text fontSize='1.5rem' mb='1.3rem' ml={[".7rem", "0"]}>
           {movies.length > 0
@@ -79,7 +85,7 @@ export function SearchMovies({ searchByMovieOrTvShow }: SearchMoviesProps) {
               ({ id, title, poster_path, release_date, overview }) => {
                 return (
                   <>
-                    {(
+                    {!isLoading ? (
                       <SearchMovieCard
                         key={id}
                         id={id}
@@ -88,7 +94,9 @@ export function SearchMovies({ searchByMovieOrTvShow }: SearchMoviesProps) {
                         release_date={release_date}
                         overview={overview}
                       />
-                    ) || <Skeleton count={5} />}
+                    ) : (
+                      <Skeleton />
+                    )}
                   </>
                 );
               }
@@ -114,6 +122,6 @@ export function SearchMovies({ searchByMovieOrTvShow }: SearchMoviesProps) {
           Próxima página
         </Button>
       )}
-    </>
+    </SkeletonTheme>
   );
 }

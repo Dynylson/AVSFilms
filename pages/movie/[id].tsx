@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { MovieDetails } from "../../src/components/Movies/MoviesList/MovieDetails";
 import { Spinner, Flex } from "@chakra-ui/react";
-import { IActor, IMovie, trailer } from "../../typings";
+import { IActor, IMovie, trailer } from "../../src/@types/typings";
 
 interface TrailerProps {
   id: number;

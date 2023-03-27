@@ -1,6 +1,6 @@
 import { useColorMode } from "@chakra-ui/react";
 import { createContext, ReactNode, useEffect, useState } from "react";
-import { genre } from "../../typings";
+import { genre } from "../@types/typings";
 import { requests } from "../utils/requests";
 
 interface FilmsContextType {

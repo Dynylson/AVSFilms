@@ -1,5 +1,5 @@
 import { ITvShowActors } from "../../../pages/tv/[id]";
-import { TvShowActorsCard } from "./TvShowActorsCard";
+import { TvShowActorsCard } from "./components/TvShowActorsCard";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";

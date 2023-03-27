@@ -34,6 +34,7 @@ export function ButtonList({
         maxW='auto'
         justifyContent='start'
         onClick={handleAddMoviesToList}
+        color='#fff'
         background='#48BB78'
         _hover={{ background: "#2F855A" }}
         {...props}

@@ -16,8 +16,6 @@ export function ActorCard({ data, movies }: ActorCardProps) {
     return index < 20;
   });
 
-  // console.log(arrayMoviesReduced);
-
   return (
     <>
       <Flex maxW={1700} mx='auto' mt='3rem' px='1rem'>

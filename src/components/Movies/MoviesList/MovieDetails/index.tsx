@@ -6,7 +6,6 @@ import {
   AspectRatio,
   Button,
 } from "@chakra-ui/react";
-import { useEffect } from "react";
 
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
@@ -14,7 +13,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { TrailerProps, IActor, IMovie } from "../../../../../typings";
+import { TrailerProps, IActor, IMovie } from "../../../../@types/typings";
 import { useAddMoviesList } from "../../../../hooks/useAddMoviesList";
 import { Actors } from "./Actors";
 import { MovieSimilar } from "./MovieSimilar";
