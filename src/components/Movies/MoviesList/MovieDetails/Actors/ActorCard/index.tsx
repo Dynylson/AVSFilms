@@ -4,6 +4,7 @@ import Link from "next/link";
 import { AiFillStar } from "react-icons/ai";
 
 import { IActor, IActorMovie } from "../../../../../../../pages/actor/[id]";
+import { useSearchMovieById } from "../../../../../../hooks/useSearchMovieById";
 import { getMovieImage } from "../../../../../../utils/requests";
 
 interface ActorCardProps {
@@ -12,6 +13,8 @@ interface ActorCardProps {
 }
 
 export function ActorCard({ data, movies }: ActorCardProps) {
+  const { searchMovieById } = useSearchMovieById();
+
   const arrayMoviesReduced = movies?.filter((movie, index) => {
     return index < 20;
   });
@@ -53,7 +56,7 @@ export function ActorCard({ data, movies }: ActorCardProps) {
             <Heading fontSize='1.5rem' mb='.5rem'>
               Biografia
             </Heading>
-            <Text maxW='80ch'>{data.biography}</Text>
+            <Text maxW='80ch' maxH='200px' style={{ overflowY: "scroll" }}>{data.biography}</Text>
             <Heading fontSize='1.5rem' mt='1rem' mb='1rem'>
               Conhecido(a) por
             </Heading>

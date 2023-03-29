@@ -4,6 +4,7 @@ import {
   Heading,
   Text,
   useBreakpointValue,
+  Skeleton,
 } from "@chakra-ui/react";
 
 import Link from "next/link";
@@ -16,6 +17,7 @@ interface SearchMoviesCardProps {
   src: string;
   release_date: string;
   overview: string;
+  loading: boolean;
 }
 
 export function SearchMovieCard({
@@ -24,6 +26,7 @@ export function SearchMovieCard({
   release_date,
   overview,
   id,
+  loading
 }: SearchMoviesCardProps) {
   const isWideVersion = useBreakpointValue({
     base: false,
@@ -54,6 +57,7 @@ export function SearchMovieCard({
         boxShadow='0 2px 8px rgb(0 0 0 / 10%)'
         mx={[".7rem", "0"]}
       >
+        {loading ? <Skeleton /> :
         <Image
           src={getPosterURL(src)}
           maxW='94px'
@@ -61,6 +65,7 @@ export function SearchMovieCard({
           borderBottomLeftRadius='8px'
           alt={title}
         />
+}
         <Flex direction='column'>
           <Heading fontSize='1.1rem' mt='.8rem'>
             {title}

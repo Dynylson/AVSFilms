@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 import { useRouter } from "next/router";
 
-import { Text, Flex, Button } from "@chakra-ui/react";
+import { Text, Flex, Button, Spinner } from "@chakra-ui/react";
 
 import { SearchMovieCard } from "./components/SearchMovieCard";
 import { SearchTvShowCard } from "./components/SearchTvShowCard";
@@ -29,7 +29,7 @@ export function SearchMovies({ searchByMovieOrTvShow }: SearchMoviesProps) {
   const [movies, setMovies] = useState<MoviesProps[]>([]);
   const [tvSeries, setTvSeries] = useState([]);
   const [page, setPage] = useState(1);
-  const [isLoading, setIsLoading] = useState<null | boolean>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   const { query } = useRouter();
   const q = query.movie;
@@ -93,6 +93,7 @@ export function SearchMovies({ searchByMovieOrTvShow }: SearchMoviesProps) {
                         title={title}
                         release_date={release_date}
                         overview={overview}
+                        loading={isLoading}
                       />
                     ) : (
                       <Skeleton />

@@ -1,4 +1,5 @@
 import { useColorMode } from "@chakra-ui/react";
+import axios from "axios";
 import { createContext, ReactNode, useEffect, useState } from "react";
 import { genre } from "../@types/typings";
 import { requests } from "../utils/requests";
@@ -8,11 +9,13 @@ interface FilmsContextType {
   genres: genre[];
   movieGenre: number;
   moviesList: IMovieList[];
+  // movieById: [];
   switchTheme: () => void;
   moviesCategoryByGenre: (id: number) => void;
   addMovieToList: (movie: IMovieList) => void;
   handleDeleteMovie: (movies: IMovieList[]) => void;
   SearchTvShowByQuery: (id: any) => any;
+  searchMovieById: (id: number) => void;
 }
 
 export interface IMovieList {
@@ -32,6 +35,8 @@ export function FilmsContextProvider({ children }: FilmsContextProviderProps) {
   const [genres, setGenres] = useState<genre[]>([]);
   const [movieGenre, setMovieGenre] = useState(28);
   const [moviesList, setMoviesList] = useState<IMovieList[]>([]);
+
+  const [movieById, setMovieById] = useState([]);
 
   function switchTheme() {
     toggleColorMode();
@@ -67,6 +72,13 @@ export function FilmsContextProvider({ children }: FilmsContextProviderProps) {
     return response;
   }
 
+  async function searchMovieById(id: number) {
+    const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=ee6c522f6ee1372ba637b097a93e6d60&language=pt-BR`);
+    const data = await response.json();
+    
+    setMovieById(data);
+  }
+
   return (
     <FilmsContext.Provider
       value={{
@@ -79,6 +91,8 @@ export function FilmsContextProvider({ children }: FilmsContextProviderProps) {
         moviesList,
         handleDeleteMovie,
         SearchTvShowByQuery,
+        searchMovieById,
+        // movieById
       }}
     >
       {children}
