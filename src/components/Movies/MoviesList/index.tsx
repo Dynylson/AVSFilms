@@ -3,7 +3,7 @@ import { Heading, Flex, Spinner, Skeleton } from "@chakra-ui/react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 
-import { MovieCard } from "../MovieCard";
+import { MovieCard } from "../../Movies/components/MovieCard";
 
 interface MovieCharacteristics {
   id: number;
