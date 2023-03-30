@@ -8,8 +8,8 @@ import {
   Skeleton,
 } from "@chakra-ui/react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
-import { IActor } from "../../../../../@types/typings";
-import { getMovieImage } from "../../../../../utils/requests";
+import { IActor } from "../../../../../../../../@types/typings";
+import { getMovieImage } from "../../../../../../../../utils/requests";
 
 interface ActorsProps {
   actors: IActor[];

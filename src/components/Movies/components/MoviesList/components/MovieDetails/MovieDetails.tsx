@@ -13,10 +13,11 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { TrailerProps, IActor, IMovie } from "../../../../@types/typings";
-import { useAddMoviesList } from "../../../../hooks/useAddMoviesList";
-import { Actors } from "./Actors";
-import { MovieSimilar } from "./MovieSimilar";
+import { TrailerProps, IActor, IMovie } from "../../../../../../@types/typings";
+import { useAddMoviesList } from "../../../../../../hooks/useAddMoviesList";
+import { ButtonList } from "../../../../../ButtonList";
+import { Actors } from "./components/Actors";
+import { MovieSimilar } from "./components/MovieSimilar";
 
 interface genre {
   id: number;
@@ -108,15 +109,11 @@ export function MovieDetails({
                   </Text>
                 );
               })}
-              <Button
-                maxW='auto'
-                justifyContent='start'
-                onClick={handleAddMoviesToList}
-                background='#48BB78'
-                _hover={{ background: "#2F855A" }}
-              >
-                Adicionar à lista
-              </Button>
+              <ButtonList
+                title={title}
+                overview={overview}
+                poster_path={poster_path}
+              />
             </Flex>
             <Heading mt='3rem' fontSize='1.5rem'>
               Sinopse

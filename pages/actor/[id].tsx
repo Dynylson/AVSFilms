@@ -1,7 +1,7 @@
 import { Flex, Spinner } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { ActorCard } from "../../src/components/Movies/MoviesList/MovieDetails/Actors/ActorCard";
+import { ActorCard } from "../../src/components/Movies/components/MoviesList/components/MovieDetails/components/Actors/components/ActorCard";
 
 export interface IActor {
   name: string;

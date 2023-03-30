@@ -5,11 +5,14 @@ import {
   Image,
   useBreakpointValue,
 } from "@chakra-ui/react";
-import { IMovie } from "../../../../../@types/typings";
+
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 
-import { getMovieImage } from "../../../../../utils/requests";
+import { IMovie } from "../../../../../../../@types/typings";
+
+import { getMovieImage } from "../../../../../../../utils/requests";
+
 import Link from "next/link";
 
 interface MovieSimilarProps {
