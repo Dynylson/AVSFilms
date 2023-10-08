@@ -10,9 +10,13 @@ import { DarkTheme } from "./components/DarkTheme";
 
 import { getSession, signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 export function LoginAndSignUp() {
-  const { data: session } = useSession();
+  const router = useRouter()
+
+  const { data: session }: any = useSession();
+  console.log(session);
 
   const login = useColorModeValue("#48BB78", "#48BB78");
   const exit = useColorModeValue("#c53030", "#c53030");
@@ -23,20 +27,16 @@ export function LoginAndSignUp() {
         <Link href='/minha-lista'>
           <Button mr='.5rem'>Minha lista</Button>
         </Link>
-        {session?.user?.image && session?.user?.name && (
+        {!!session ? (
           <>
-            <Avatar
-              src={session.user.image}
-              name={session.user.name}
-              w={["44px", "60px"]}
-              h={["44px", "60px"]}
-              borderRadius='50%'
-            />
+            {/* <User size={32} /> */}
+            <Button fontWeight='bold' onClick={() => router.push(`/profile/${session?.user?.id}`)}>
+              Meu Perfil
+            </Button>
           </>
-        )}
-        <Text color='blue.900' fontWeight='bold'>
-          {session?.user?.name}
-        </Text>
+          
+        ) : <h1>ludmilo</h1>}
+        
       </Flex>
       {!session ? (
         <Button

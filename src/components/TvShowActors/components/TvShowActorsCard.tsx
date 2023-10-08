@@ -1,6 +1,6 @@
 import { Box, Flex, Heading, Image, Text } from "@chakra-ui/react";
 import Link from "next/link";
-import { ITvShowActors } from "../../../../pages/tv/[id]";
+import { ITvShowActors } from "../../TvPage/TvPage";
 import { getMovieImage } from "../../../utils/requests";
 
 interface TvShowActorsCardProps {

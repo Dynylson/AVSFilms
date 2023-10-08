@@ -1,4 +1,4 @@
-import { ITvShowActors } from "../../../pages/tv/[id]";
+import { ITvShowActors } from "../TvPage/TvPage";
 import { TvShowActorsCard } from "./components/TvShowActorsCard";
 
 import { Swiper, SwiperSlide } from "swiper/react";
