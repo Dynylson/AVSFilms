@@ -1,7 +1,6 @@
 
 import { NextApiRequest, NextApiResponse } from "next";
 import NextAuth, { NextAuthOptions } from 'next-auth'
-// import GithubProvider, { GithubProfile } from 'next-auth/providers/github'
 import GoogleProvider, { GoogleProfile } from 'next-auth/providers/google'
 import { PrismaAdapter } from "../../../src/lib/auth/prismaAdapter";
 
@@ -25,19 +24,8 @@ export function buildNextAuthOptions(
                     }
                 }
             }),
-            // GithubProvider({
-            //     clientId: process.env.GITHUB_CLIENT_ID ?? "",
-            //     clientSecret: process.env.GITHUB_CLIENT_SECRET ?? "",
-            //     profile(profile: GithubProfile) {
-            //         return {
-            //             id: profile.id, 
-            //             name: profile.name!,
-            //             email: profile.email!,
-            //             avatar_url: profile.avatar_url
-            //         }
-            //     }
-            // })
         ],
+        secret: process.env.NEXTAUTH_SECRET,
 
         callbacks: {
             async session ({ session, user }) {
