@@ -4,6 +4,10 @@ import {
   Button,
   Avatar,
   useColorModeValue,
+  Menu,
+  MenuButton,
+  MenuList,
+  MenuItem,
 } from "@chakra-ui/react";
 import { GetServerSideProps } from "next";
 import { DarkTheme } from "./components/DarkTheme";
@@ -11,34 +15,49 @@ import { DarkTheme } from "./components/DarkTheme";
 import { getSession, signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { BiChevronDown } from "react-icons/bi";
+// import { BsChevronDown } from "react-icons/bs";
 
 export function LoginAndSignUp() {
   const router = useRouter()
 
   const { data: session }: any = useSession();
-  console.log(session);
 
   const login = useColorModeValue("#48BB78", "#48BB78");
   const exit = useColorModeValue("#c53030", "#c53030");
 
+  function sair() {
+    signOut();
+    
+    router.push("/");
+  }
+
   return (
     <Flex alignItems='center' gap='20px'>
       <Flex alignItems='center' gap='.5rem'>
-        <Link href='/minha-lista'>
-          <Button mr='.5rem'>Minha lista</Button>
-        </Link>
-        {!!session ? (
+        {!!session && (
           <>
             {/* <User size={32} /> */}
-            <Button fontWeight='bold' onClick={() => router.push(`/profile/${session?.user?.id}`)}>
+            {/* <Button fontWeight='bold' onClick={() => router.push(`/profile/${session?.user?.id}`)}>
               Meu Perfil
-            </Button>
+            </Button> */}
+            <Menu>
+              <MenuButton as={Button} rightIcon={<BiChevronDown />}>
+                {session?.user?.name}
+              </MenuButton>
+              <MenuList>
+                <MenuItem onClick={() => router.push(`/profile/${session?.user?.id}`)}>Meu perfil</MenuItem>
+                <MenuItem onClick={() => router.push('/minha-lista')}>Minha lista</MenuItem>
+                <MenuItem>Suas avaliações</MenuItem>
+                <MenuItem onClick={sair}>Sair</MenuItem>
+              </MenuList>
+            </Menu>
           </>
           
-        ) : <h1>ludmilo</h1>}
+        )}
         
       </Flex>
-      {!session ? (
+      {!session && (
         <Button
           color='#fff'
           fontWeight='bold'
@@ -51,20 +70,6 @@ export function LoginAndSignUp() {
           onClick={() => signIn("google")}
         >
           Login
-        </Button>
-      ) : (
-        <Button
-          color='#fff'
-          fontWeight='bold'
-          _hover={{
-            textDecoration: "none",
-            color: "#ddd",
-            background: "#9B2C2C",
-          }}
-          bg={exit}
-          onClick={() => signOut()}
-        >
-          Sair
         </Button>
       )}
 

@@ -39,7 +39,7 @@ export default function MinhaLista() {
     >
       {moviesList.length === 0 ? (
         <Heading textAlign='center'>
-          Você ainda não adicionou nenhum filmes à sua lista😢
+          Você ainda não adicionou nenhum filme à sua lista😢
         </Heading>
       ) : (
         <>
