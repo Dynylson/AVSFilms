@@ -83,6 +83,7 @@ export default function Movie() {
       ) : (
         <>
           <MovieDetails
+            id={id}
             poster_path={movie.poster_path}
             title={movie.title}
             alt={movie.title}

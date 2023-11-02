@@ -17,7 +17,6 @@ export default async function handler(
     },
   })
 
-  
   const profileData = {
     user: {
       avatar_url: profile?.avatar_url,

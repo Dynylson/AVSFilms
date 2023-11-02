@@ -37,6 +37,21 @@ model Book {
   @@map("books")
 }
 
+// model Movie {
+//   id          String   @id @default(uuid())
+//   name        String
+//   // author      String
+//   // summary     String   //@db.VarChar(500)
+//   cover_url   String
+//   // total_pages Int
+//   created_at  DateTime @default(now())
+
+//   categories CategoriesOnBooks[]
+//   ratings    Rating[]
+
+//   @@map("books")
+// }
+
 model Category {
   id   String @id @default(uuid())
   name String @unique

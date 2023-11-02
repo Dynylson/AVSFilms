@@ -18,6 +18,8 @@ import { useAddMoviesList } from "../../../../../../hooks/useAddMoviesList";
 import { ButtonList } from "../../../../../ButtonList";
 import { Actors } from "./components/Actors";
 import { MovieSimilar } from "./components/MovieSimilar";
+import { MovieDialog } from "./components/MovieDialog";
+import { RatingForm } from "../../../../../RatingForm";
 
 interface genre {
   id: number;
@@ -32,6 +34,7 @@ interface productionCompany {
 }
 
 interface MovieProps {
+  id: any;
   poster_path: string;
   alt: string;
   title: string;
@@ -46,6 +49,7 @@ interface MovieProps {
 }
 
 export function MovieDetails({
+  id,
   poster_path,
   alt,
   title,
@@ -73,6 +77,19 @@ export function MovieDetails({
     });
     if (!movieAlreadyExists) addMovieToList({ title, poster_path, overview });
     toast.success("Filme adicionado à lista!");
+  }
+
+  const movieProps = {
+    poster_path,
+    alt,
+    title,
+    genres,
+    overview,
+    production_companies,
+    trailer,
+    actors,
+    similar,
+    vote_average,
   }
 
   return (
@@ -114,6 +131,10 @@ export function MovieDetails({
                 overview={overview}
                 poster_path={poster_path}
               />
+              {/* <MovieDialog movieProps={movieProps}>
+                teste
+              </MovieDialog> */}
+              <RatingForm movieId={id} />
             </Flex>
             <Heading mt='3rem' fontSize='1.5rem'>
               Sinopse
