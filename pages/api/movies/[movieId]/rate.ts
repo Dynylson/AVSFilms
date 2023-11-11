@@ -18,9 +18,10 @@ export default async function handler(
     if (!session) return res.status(401).end()
   
     try {
-      const bookId = String(req.query.bookId)
+      // const bookId = String(req.query.id)
+      const bookId = String(req.query.id)
       const userId = String(session?.user?.id!)
-  
+
     //   const bodySchema = z.object({
     //     description: z.string().max(450),
     //     rate: z.number().min(1).max(5)
@@ -28,18 +29,18 @@ export default async function handler(
   
       const { description, rate } = req.body
   
-      const userAlreadyRated = await prisma.rating.findFirst({
-        where: {
-          user_id: userId,
-          book_id: bookId
-        }
-      })
+      // const userAlreadyRated = await prisma.rating.findFirst({
+      //   where: {
+      //     user_id: userId,
+      //     book_id: bookId
+      //   }
+      // })
   
-      if (userAlreadyRated) {
-        return res.status(400).json({
-          error: "Você já avaliou esse filme"
-        })
-      }
+      // if (userAlreadyRated) {
+      //   return res.status(400).json({
+      //     error: "Você já avaliou esse filme"
+      //   })
+      // }
     
       await prisma.rating.create({
         data: {

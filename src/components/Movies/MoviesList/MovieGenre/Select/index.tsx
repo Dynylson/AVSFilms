@@ -7,7 +7,6 @@ export function SelectGenres() {
 
   const [select, setSelect] = useState(genres[0]);
 
-  // console.log(genres[0]);
   console.log(select);
 
   // return (

@@ -19,6 +19,8 @@ const ProfilePage = () => {
     enabled: !!userId
   })
 
+    console.log(profile);
+
     return (
       <Flex
       direction={["column", "row"]}

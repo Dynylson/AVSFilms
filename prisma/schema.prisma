@@ -75,11 +75,11 @@ model CategoriesOnBooks {
 
 model Rating {
   id          String   @id @default(uuid())
-  rate        Int
+  rate        Int 
   description String   //@db.VarChar(500)
   created_at  DateTime @default(now())
 
-  book    Book   @relation(fields: [book_id], references: [id])
+  book    Book?   @relation(fields: [book_id], references: [id])
   book_id String
 
   user    User   @relation(fields: [user_id], references: [id])

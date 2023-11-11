@@ -15,6 +15,24 @@ export default async function handler(
     where: {
       id: userId
     },
+    include: {
+      ratings: {
+        include: {
+          book: {
+            include: {
+              categories: {
+                include: {
+                  category: true
+                }
+              }
+            }
+          }
+        },
+        orderBy: {
+          created_at: "desc"
+        }
+      }
+    }
   })
 
   const profileData = {
@@ -23,6 +41,7 @@ export default async function handler(
       name: profile?.name,
       member_since: profile?.created_at,
     },
+    ratings: profile?.ratings
   }
 
 	return res.json({ profile: profileData })

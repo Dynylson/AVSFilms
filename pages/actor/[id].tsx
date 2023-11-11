@@ -46,7 +46,6 @@ export default function Actor() {
 
       setActor(actorData);
       setActorMovies(actorMoviesData.cast);
-      console.log(actorMoviesData.cast);
 
       setIsLoading(false);
     };
