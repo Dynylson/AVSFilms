@@ -24,7 +24,7 @@ export function buildNextAuthOptions(
                 }
             }),
         ],
-        secret: process.env.NEXT_PUBLIC_SECRET,
+        secret: process.env.NEXTAUTH_SECRET,
 
         // pages: {
         //     signIn: '/auth/signin'
