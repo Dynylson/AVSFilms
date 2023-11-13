@@ -2,6 +2,7 @@ import { prisma } from "../../../../src/lib/prisma"
 import { NextApiRequest, NextApiResponse } from "next"
 import { buildNextAuthOptions } from "../../auth/[...nextauth]"
 import { getServerSession } from "next-auth"
+import { UsuarioNaoLogadoException } from "../../../../src/exceptions/UsuarioNaoLogadoException"
 
 export default async function handler(
     req: NextApiRequest,
@@ -15,36 +16,35 @@ export default async function handler(
       buildNextAuthOptions(req, res),
     )
   
-    if (!session) return res.status(401).end()
-  
-    try {
-      // const bookId = String(req.query.id)
-      const bookId = String(req.query.id)
-      const userId = String(session?.user?.id!)
+    if (!session) {
+      throw new UsuarioNaoLogadoException("Usuário não está logado!")
+      // return res.status(401).end()
+    }
+    
+    const { id } = req.query
 
-    //   const bodySchema = z.object({
-    //     description: z.string().max(450),
-    //     rate: z.number().min(1).max(5)
-    //   })
+    try {
+      console.log("Id do filme:", id)
+      const userId = String(session?.user?.id!)
   
-      const { description, rate } = req.body
+      const { description, rate, book_id } = req.body
   
-      // const userAlreadyRated = await prisma.rating.findFirst({
-      //   where: {
-      //     user_id: userId,
-      //     book_id: bookId
-      //   }
-      // })
+      const userAlreadyRated = await prisma.rating.findFirst({
+        where: {
+          user_id: userId,
+          book_id: book_id
+        }
+      })
   
-      // if (userAlreadyRated) {
-      //   return res.status(400).json({
-      //     error: "Você já avaliou esse filme"
-      //   })
-      // }
+      if (userAlreadyRated) {
+        return res.status(400).json({
+          error: "Você já avaliou esse filme"
+        })
+      }
     
       await prisma.rating.create({
         data: {
-          book_id: bookId,
+          book_id,
           description,
           rate,
           user_id: userId

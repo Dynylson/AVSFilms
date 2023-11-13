@@ -79,7 +79,7 @@ model Rating {
   description String   //@db.VarChar(500)
   created_at  DateTime @default(now())
 
-  book    Book?   @relation(fields: [book_id], references: [id])
+  book    Book   @relation(fields: [book_id], references: [id])
   book_id String
 
   user    User   @relation(fields: [user_id], references: [id])

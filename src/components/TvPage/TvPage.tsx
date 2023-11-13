@@ -6,6 +6,7 @@ import { useTvShowData } from "../../hooks/useTvShowData";
 import { getBannerImage, getMovieImage } from "../../utils/requests";
 import { ButtonList } from "../ButtonList";
 import { TvShowActors } from "../TvShowActors";
+import { RatingForm } from "../RatingForm";
 
 interface TvShowGenre {
   id: number;
@@ -101,12 +102,15 @@ export function TvPage() {
                   );
                 })}
               </Flex>
-              <ButtonList
-                w='10rem'
-                title={tvShow.name}
-                poster_path={tvShow.poster_path}
-                overview={tvShow.overview}
-              />
+              <Flex gap=".3rem">
+                <ButtonList
+                  w='10rem'
+                  title={tvShow.name}
+                  poster_path={tvShow.poster_path}
+                  overview={tvShow.overview}
+                />
+                <RatingForm movieId={id} />
+              </Flex>
               <Box>
                 <Heading as='h3' fontSize='1.2rem' color='white'>
                   Sinopse

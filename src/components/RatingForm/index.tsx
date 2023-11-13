@@ -3,6 +3,8 @@ import { api } from "../../lib/axios"
 import { Button, FormControl, FormLabel, Input, Modal, ModalBody, ModalCloseButton, ModalContent, ModalFooter, ModalHeader, ModalOverlay, Textarea, useDisclosure } from "@chakra-ui/react"
 import { FormEvent, useRef, useState } from "react"
 import { useRouter } from "next/router"
+import { UsuarioNaoLogadoException } from "../../exceptions/UsuarioNaoLogadoException"
+import { StarsRating } from "./StarsRating"
 
 type RatingFormProps = {
     movieId: any
@@ -11,7 +13,6 @@ type RatingFormProps = {
 export function RatingForm({ movieId }: RatingFormProps) {
     const { query } = useRouter();
     const { id } = query;
-    console.log(query)
 
     const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -23,22 +24,35 @@ export function RatingForm({ movieId }: RatingFormProps) {
     const { mutateAsync: handleRate } = useMutation(async () => {
         await api.post(`/movies/${id}/rate`, {
           description: avaliacao,
-          rate: currentRate
+          rate: currentRate,
+          book_id: id
         })
       })
 
     const handleSubmit = async (event: FormEvent) => {
+      try {
         event.preventDefault()
 
         await handleRate()
 
         onClose()
         setAvaliacao("")
+      } catch (e) {
+        if (e instanceof UsuarioNaoLogadoException) {
+          console.log("aaaaaaaa")
+        } else {
+          console.log("erro desconhecido")
+        }
+      }
+        
     }
 
     return (
         <>
-      <Button onClick={onOpen}>Avaliar</Button>
+      <Button onClick={onOpen} backgroundColor='blue.900' color="white.900"
+       _hover={{ 
+        backgroundColor: "#1551CD"
+        }}>Avaliar</Button>
 
       <Modal
         initialFocusRef={initialRef}
@@ -48,6 +62,7 @@ export function RatingForm({ movieId }: RatingFormProps) {
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Avaliação</ModalHeader>
+          <StarsRating />
           <ModalCloseButton />
           <ModalBody pb={6}>
             {/* <FormControl>
