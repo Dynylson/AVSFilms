@@ -5,6 +5,8 @@ import { MovieDetails } from "../../src/components/Movies/components/MoviesList/
 
 import { Spinner, Flex } from "@chakra-ui/react";
 import { IActor, IMovie, trailer } from "../../src/@types/typings";
+import { TvShowPageLayout } from "../../src/components/Header/components/TvShowPageLayout";
+import { MoviePage } from "../../src/components/MoviePage";
 
 interface TrailerProps {
   id: number;
@@ -27,6 +29,7 @@ interface MovieProps {
   adult: boolean;
   title: string;
   poster_path: string;
+  backdrop_path: string;
   alt: string;
   genres: genre[];
   overview: string;
@@ -39,6 +42,16 @@ export default function Movie() {
   const [trailer, setTrailer] = useState({} as TrailerProps);
   const [actors, setActors] = useState<IActor[]>([]);
   const [similar, setSimilar] = useState<IMovie[]>([]);
+
+  const [carregando, setCarregando] = useState(true);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setCarregando(false);
+    }, 1000);
+
+    return () => clearTimeout(timeout);
+  }, []);
 
   const [loading, setLoading] = useState(true);
 
@@ -76,13 +89,13 @@ export default function Movie() {
 
   return (
     <>
-      {loading ? (
+      {carregando ? (
         <Flex w='100vw' h='80vh' alignItems='center' justifyContent='center'>
           <Spinner size='lg' />
         </Flex>
       ) : (
         <>
-          <MovieDetails
+          {/* <MovieDetails
             id={id}
             poster_path={movie.poster_path}
             title={movie.title}
@@ -95,7 +108,22 @@ export default function Movie() {
             actors={actors}
             similar={similar}
             loading={loading}
-          />
+          /> */}
+          <MoviePage
+          id={id}
+          poster_path={movie.poster_path}
+          backdrop_path={movie.backdrop_path}
+          title={movie.title}
+          alt={movie.title}
+          vote_average={movie.vote_average}
+          genres={movie.genres}
+          overview={movie.overview}
+          production_companies={movie.production_companies}
+          trailer={trailer}
+          actors={actors}
+          similar={similar}
+          loading={loading} />
+          {/* <TvShowPageLayout /> */}
         </>
       )}
     </>

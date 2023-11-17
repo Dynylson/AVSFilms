@@ -13,7 +13,9 @@ const ProfilePage = () => {
     // const isOwnProfile = session?.user?.id === userId;
 
     const { data: profile } = useQuery(["profile", userId], async () => {
-    const { data } = await api.get(`/profile/${userId}`)
+    const { data } = await api.post(`/profile/${userId}`, {
+      id: userId
+    })
     return data?.profile ?? {}
   }, {
     enabled: !!userId

@@ -21,10 +21,7 @@ export default async function handler(
       // return res.status(401).end()
     }
     
-    const { id } = req.query
-
     try {
-      console.log("Id do filme:", id)
       const userId = String(session?.user?.id!)
   
       const { description, rate, book_id } = req.body

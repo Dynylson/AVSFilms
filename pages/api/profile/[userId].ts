@@ -7,13 +7,17 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
-  if(req.method !== "GET") return res.status(405).end()
+  // if(req.method !== "GET") return res.status(405).end()
 
-  const userId = String(req.query.userId)
+  // const userId = String(req.query.userId)
+
+  // console.log(userId);
+
+  const { id } = req.body
 
 	const profile = await prisma.user.findUnique({
     where: {
-      id: userId
+      id
     },
     include: {
       ratings: {

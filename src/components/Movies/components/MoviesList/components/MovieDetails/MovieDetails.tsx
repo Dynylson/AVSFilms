@@ -33,11 +33,12 @@ interface productionCompany {
   origin_country: string;
 }
 
-interface MovieProps {
+export interface MovieProps {
   id: any;
   poster_path: string;
   alt: string;
   title: string;
+  backdrop_path: string
   vote_average: number;
   genres: genre[];
   overview: string;
