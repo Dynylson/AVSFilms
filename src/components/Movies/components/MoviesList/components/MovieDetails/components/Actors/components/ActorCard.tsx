@@ -11,6 +11,7 @@ import {
 import { useSearchMovieById } from "../../../../../../../../../hooks/useSearchMovieById";
 
 import { getMovieImage } from "../../../../../../../../../utils/requests";
+import { LerMais } from "../../../../../../../../LerMais";
 
 interface ActorCardProps {
   data: IActor;
@@ -61,8 +62,9 @@ export function ActorCard({ data, movies }: ActorCardProps) {
             <Heading fontSize='1.5rem' mb='.5rem'>
               Biografia
             </Heading>
-            <Text maxW='80ch' maxH='200px' style={{ overflowY: "scroll" }}>
-              {data.biography}
+            <Text maxW="75ch">
+              {/* {data.biography} */}
+              <LerMais texto={data.biography} limiteCaracteres={200} />
             </Text>
             <Heading fontSize='1.5rem' mt='1rem' mb='1rem'>
               Conhecido(a) por
