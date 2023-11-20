@@ -5,7 +5,7 @@ import { MovieDetails } from "../../src/components/Movies/components/MoviesList/
 
 import { Spinner, Flex } from "@chakra-ui/react";
 import { IActor, IMovie, trailer } from "../../src/@types/typings";
-import { TvShowPageLayout } from "../../src/components/Header/components/TvShowPageLayout";
+// import { TvShowPageLayout } from "../../src/components/Header/components/TvShowPageLayout";
 import { MoviePage } from "../../src/components/MoviePage";
 
 interface TrailerProps {

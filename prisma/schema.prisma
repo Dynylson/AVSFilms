@@ -25,10 +25,10 @@ model User {
 model Book {
   id          String   @id @default(uuid())
   name        String
-  author      String
-  summary     String   //@db.VarChar(500)
+  // author      String
+  // summary     String   //@db.VarChar(500)
   cover_url   String
-  total_pages Int
+  // total_pages Int
   created_at  DateTime @default(now())
 
   categories CategoriesOnBooks[]
@@ -65,7 +65,7 @@ model CategoriesOnBooks {
   book_id    String
   categoryId String
 
-  book     Book     @relation(fields: [book_id], references: [id])
+  book     Book?     @relation(fields: [book_id], references: [id])
   category Category @relation(fields: [categoryId], references: [id])
 
   @@id([book_id, categoryId])

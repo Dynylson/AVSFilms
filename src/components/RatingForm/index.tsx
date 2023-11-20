@@ -8,6 +8,7 @@ import { StarsRating } from "./StarsRating"
 
 type RatingFormProps = {
     movieId: any
+    // movie: any
 }
 
 export function RatingForm({ movieId }: RatingFormProps) {
@@ -21,11 +22,14 @@ export function RatingForm({ movieId }: RatingFormProps) {
 
     const currentRate = 5
 
+    // console.log("moviebook: ", movie)
+
     const { mutateAsync: handleRate } = useMutation(async () => {
         await api.post(`/movies/${id}/rate`, {
           description: avaliacao,
           rate: currentRate,
-          book_id: id
+          book_id: id,
+          // book: movie
         })
       })
 

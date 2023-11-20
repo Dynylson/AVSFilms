@@ -24,7 +24,7 @@ export default async function handler(
     try {
       const userId = String(session?.user?.id!)
   
-      const { description, rate, book_id } = req.body
+      const { description, rate, book_id, book } = req.body
   
       const userAlreadyRated = await prisma.rating.findFirst({
         where: {
@@ -44,9 +44,16 @@ export default async function handler(
           book_id,
           description,
           rate,
-          user_id: userId
+          user_id: userId,
+          // book: {
+          //   id: book_id,
+          //   name: "schindler",
+          //   created_at: new Date()
+          // }
         }
       })
+
+      console.log(book)
     
       return res.status(201).end()
     } catch (error) {

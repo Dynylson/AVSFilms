@@ -12,32 +12,51 @@ export default async function handler(
   // const userId = String(req.query.userId)
 
   // console.log(userId);
+  const userId = req.query.userId
 
-  const { id } = req.body
+  // const { id } = req.body
+  console.log('req.query:', req.query.userId)
 
-	const profile = await prisma.user.findUnique({
+	// const profile = await prisma.user.findUnique({
+  //   where: {
+  //     id: String(userId)
+  //   },
+  //   include: {
+  //     ratings: {
+  //       include: {
+  //         book: {
+  //           include: {
+  //             categories: {
+  //               include: {
+  //                 category: true
+  //               }
+  //             }
+  //           }
+  //         }
+  //       },
+  //       orderBy: {
+  //         created_at: "desc"
+  //       }
+  //     }
+  //   }
+  // })
+
+  const profile = await prisma.user.findUnique({
     where: {
-      id
-    },
-    include: {
-      ratings: {
-        include: {
-          book: {
-            include: {
-              categories: {
-                include: {
-                  category: true
-                }
-              }
-            }
-          }
-        },
-        orderBy: {
-          created_at: "desc"
-        }
-      }
+      id: String(userId)
     }
-  })
+  });
+  
+
+  // const filteredRatings = profile?.ratings.filter(rating => rating.book !== null);
+
+  // const ratingWithBooks = await prisma.rating.findMany({
+  //   include: {
+  //     book: true
+  //   }
+  // })
+
+  console.log(userId)
 
   const profileData = {
     user: {
@@ -45,7 +64,8 @@ export default async function handler(
       name: profile?.name,
       member_since: profile?.created_at,
     },
-    ratings: profile?.ratings
+    // ratings: profile?.ratings
+    // ratings: filteredRatings
   }
 
 	return res.json({ profile: profileData })

@@ -93,6 +93,12 @@ export function MovieDetails({
     vote_average,
   }
 
+  const movieBook = {
+    id,
+    title,
+    poster_path
+  }
+
   return (
     <>
       <Flex maxW={1700} mx='auto' mt='3rem' px='1rem'>
@@ -135,7 +141,7 @@ export function MovieDetails({
               {/* <MovieDialog movieProps={movieProps}>
                 teste
               </MovieDialog> */}
-              <RatingForm movieId={id} />
+              <RatingForm movieId={movieBook} />
             </Flex>
             <Heading mt='3rem' fontSize='1.5rem'>
               Sinopse
